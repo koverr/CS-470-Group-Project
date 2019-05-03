@@ -8,10 +8,10 @@
 
 <AnchorPane id="AnchorPane" prefHeight="259.0" prefWidth="392.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CoolCars.LoginPageController">
     <children>
-      <Label layoutX="47.0" layoutY="67.0" text="Username:" />
-        <Label fx:id="label" layoutX="48.0" layoutY="119.0" minHeight="16" minWidth="69" text="Password:" />
-      <Button layoutX="157.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
       <TextField id="Username" fx:id="Username" layoutX="138.0" layoutY="62.0" promptText="Username" />
       <PasswordField id="Password" fx:id="Password" layoutX="138.0" layoutY="114.0" promptText="Password" />
+      <Button defaultButton="true" layoutX="157.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
+      <Label layoutX="47.0" layoutY="67.0" text="Username:" />
+        <Label fx:id="label" layoutX="48.0" layoutY="119.0" minHeight="16" minWidth="69" text="Password:" />
     </children>
 </AnchorPane>
