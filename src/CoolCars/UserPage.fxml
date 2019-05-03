@@ -6,10 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="674.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CoolCars.UserPageController">
    <children>
-      <ChoiceBox id="Location" fx:id="Location" layoutX="117.0" layoutY="45.0" prefWidth="150.0" />
+      <ChoiceBox id="Location" fx:id="Location" layoutX="117.0" layoutY="45.0" onMouseClicked="#handleSelection" prefWidth="150.0" />
       <ChoiceBox id="Year" fx:id="Year" layoutX="117.0" layoutY="121.0" prefWidth="150.0" />
       <Label layoutX="46.0" layoutY="50.0" text="Location" />
       <Label layoutX="46.0" layoutY="126.0" text="Year" />
