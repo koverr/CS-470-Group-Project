@@ -21,7 +21,7 @@ public class CoolCars extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         window = stage;
-        window.setTitle("Login Page");
+        window.setTitle("Cool Cars LLC");
         Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
         
         Scene scene = new Scene(root);

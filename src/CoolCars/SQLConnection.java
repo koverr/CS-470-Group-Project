@@ -7,9 +7,9 @@ package CoolCars;
 import java.sql.*;
 
 public class SQLConnection {
-    private String USERNAME;
-    private String PASSWORD;
-    private String CONN_STRING;
+    private final String USERNAME;
+    private final String PASSWORD;
+    private final String CONN_STRING;
     Connection conn;
     Statement stmt;
     

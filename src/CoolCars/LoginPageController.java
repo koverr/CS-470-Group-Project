@@ -40,8 +40,37 @@ public class LoginPageController implements Initializable {
     
     @FXML
     private void handleLogin(ActionEvent event) throws IOException {
+        String user = Username.getText();
+        String pass = Password.getText();
         
-        if (Username.getText().equals("koverbay") && Password.getText().equals("pass")){
+        try{
+            
+            /*stmt.executeUpdate("CREATE VIEW UserView AS "
+                    + "SELECT Username, Name, CreditScore, License, Insurance, Balance, PhoneNumber "
+                    + "FROM User "
+                    + "WHERE Username = '" + user + "' AND Password = '" + pass + "';");
+            //System.out.println("Done.");
+            */
+            
+            ResultSet rs = stmt.executeQuery("SELECT Username FROM User WHERE Username = '" + user + "' AND Password = '" + pass + "';");
+            if (!rs.next()){
+                System.out.println("Incorrect Username or Password.");
+                //stmt.executeUpdate("DROP VIEW UserView;");            
+            }
+            else{
+                Node node=(Node) event.getSource();
+                Stage stage=(Stage) node.getScene().getWindow();
+                Parent root = FXMLLoader.load(getClass().getResource("UserPage.fxml"));/* Exception */
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+        } catch (SQLException e){
+            System.err.println(e);
+        }
+        
+        /*
+        if (user.equals("koverbay") && pass.equals("pass")){
             System.out.println("Logged in!");
             /////////////////////////////////////////////////////////////////////
             try {
@@ -70,14 +99,15 @@ public class LoginPageController implements Initializable {
             /////////////////////////////////////////////////////////////////////
             Node node=(Node) event.getSource();
             Stage stage=(Stage) node.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("UserPage.fxml"));/* Exception */
+            Parent root = FXMLLoader.load(getClass().getResource("UserPage.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+            
         }
         else
             System.out.println("Wrong credentials");
-        
+        */
     }
     
     @Override
