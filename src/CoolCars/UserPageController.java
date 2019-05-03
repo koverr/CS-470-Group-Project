@@ -50,26 +50,7 @@ public class UserPageController implements Initializable {
   
 
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     /**
      * Initializes the controller class.
      */
@@ -77,15 +58,16 @@ public class UserPageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             ResultSet rs = stmt.executeQuery("SELECT Address FROM Location;");
-            System.out.println("test");
             while(rs.next()){
                 Location.getItems().add(rs.getString(1));
             }
+            Location.setValue("422 Roberts St");
             
             rs = stmt.executeQuery("SELECT DISTINCT Year FROM Cars;");
             while(rs.next()){
                 Year.getItems().add(rs.getString(1));
             }
+            Year.setValue("2019");
             
         } catch (SQLException e) {
             System.out.println(e);

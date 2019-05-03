@@ -10,8 +10,9 @@
     <children>
       <TextField id="Username" fx:id="Username" layoutX="138.0" layoutY="62.0" promptText="Username" />
       <PasswordField id="Password" fx:id="Password" layoutX="138.0" layoutY="114.0" promptText="Password" />
-      <Button defaultButton="true" layoutX="157.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
+      <Button defaultButton="true" layoutX="168.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
       <Label layoutX="47.0" layoutY="67.0" text="Username:" />
         <Label fx:id="label" layoutX="48.0" layoutY="119.0" minHeight="16" minWidth="69" text="Password:" />
+      <Label id="Status" fx:id="Status" layoutX="98.0" layoutY="205.0" prefHeight="21.0" prefWidth="219.0" textFill="RED" />
     </children>
 </AnchorPane>

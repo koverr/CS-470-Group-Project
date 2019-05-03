@@ -39,23 +39,18 @@ public class LoginPageController implements Initializable {
     PasswordField Password;
     
     @FXML
+    Label Status;
+    
+    @FXML
     private void handleLogin(ActionEvent event) throws IOException {
         String user = Username.getText();
         String pass = Password.getText();
         
-        try{
-            
-            /*stmt.executeUpdate("CREATE VIEW UserView AS "
-                    + "SELECT Username, Name, CreditScore, License, Insurance, Balance, PhoneNumber "
-                    + "FROM User "
-                    + "WHERE Username = '" + user + "' AND Password = '" + pass + "';");
-            //System.out.println("Done.");
-            */
-            
+        try {
             ResultSet rs = stmt.executeQuery("SELECT Username FROM User WHERE Username = '" + user + "' AND Password = '" + pass + "';");
             if (!rs.next()){
-                System.out.println("Incorrect Username or Password.");
-                //stmt.executeUpdate("DROP VIEW UserView;");            
+                Status.setText("Incorrect Username or Password.");    
+                Password.clear();
             }
             else{
                 Node node=(Node) event.getSource();
@@ -68,46 +63,6 @@ public class LoginPageController implements Initializable {
         } catch (SQLException e){
             System.err.println(e);
         }
-        
-        /*
-        if (user.equals("koverbay") && pass.equals("pass")){
-            System.out.println("Logged in!");
-            /////////////////////////////////////////////////////////////////////
-            try {
-            ResultSet rs = stmt.executeQuery("SELECT * FROM AvailCars;");
-            
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columns = rsmd.getColumnCount();
-            for (int i = 1; i <= columns; i++){
-                System.out.print(rsmd.getColumnName(i) + "      ");
-            }
-            System.out.println();
-            while (rs.next()){
-
-                for (int i = 1; i <= columns; i++){
-                    //if (i > 1)
-                    //    System.out.print(", ");
-                    String columnData = rs.getString(i);
-                    System.out.print(columnData + "         ");
-                }
-                System.out.println();
-            }
-            
-            } catch (SQLException e){
-             System.err.print(e);
-            }
-            /////////////////////////////////////////////////////////////////////
-            Node node=(Node) event.getSource();
-            Stage stage=(Stage) node.getScene().getWindow();
-            Parent root = FXMLLoader.load(getClass().getResource("UserPage.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            
-        }
-        else
-            System.out.println("Wrong credentials");
-        */
     }
     
     @Override
