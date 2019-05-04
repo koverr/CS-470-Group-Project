@@ -29,6 +29,8 @@ public class LoginPageController implements Initializable {
     Connection conn = sqlconn.connect();
     Statement stmt = sqlconn.getStatement();
     
+    Statement stmt2 = sqlconn.getStatement();
+    
     @FXML
     TextField Username;
     
@@ -45,14 +47,23 @@ public class LoginPageController implements Initializable {
         
         try {
             ResultSet rs = stmt.executeQuery("SELECT Username FROM User WHERE Username = '" + user + "' AND Password = '" + pass + "';");
-            if (!rs.next()){
+            ResultSet rs2 = stmt2.executeQuery("SELECT EmployeeID FROM Employee WHERE EmployeeID = '" + user + "' AND Password = '" + pass + "';");
+            if ((!rs.isBeforeFirst() && rs.getRow() == 0) && (!rs2.isBeforeFirst() && rs2.getRow() == 0)){
                 Status.setText("Incorrect Username or Password.");    
                 Password.clear();
             }
-            else{
+            else if (rs.isBeforeFirst()){
                 Node node=(Node) event.getSource();
                 Stage stage=(Stage) node.getScene().getWindow();
-                Parent root = FXMLLoader.load(getClass().getResource("UserPage.fxml"));/* Exception */
+                Parent root = FXMLLoader.load(getClass().getResource("UserPage.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+            else if (rs2.isBeforeFirst()){
+                Node node=(Node) event.getSource();
+                Stage stage=(Stage) node.getScene().getWindow();
+                Parent root = FXMLLoader.load(getClass().getResource("EmployeePage.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
