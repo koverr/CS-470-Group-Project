@@ -11,40 +11,37 @@ import java.util.HashMap;
  * @author koryo
  */
 public class CarSearch {
-    private int Year, Price;
-    private String Make, Model, Color, Style;
-    private HashMap<Integer, String> Condition;
+    private String Year, Price, Make, Model, Color, Style, Condition;
     
     public CarSearch (String year, String make, String model, String price, String color, String style, String condition) {
-        Year = Integer.parseInt(year);
+        Year = year;
         Make = make;
         Model = model;
-        Price = Integer.parseInt(price);
+        Price = price;
         Color = color;
         Style = style;
-        Condition = new HashMap<>();
         int conditioni = Integer.parseInt(condition);
         switch (conditioni) {
             case 1:
-                Condition.put(conditioni, "New");
+                Condition = "New";
                 break;
             case 2:
-                Condition.put(conditioni, "Fair");
+                Condition = "Fair";
                 break;
             case 3:
-                Condition.put(conditioni, "Used");
+                Condition = "Used";
                 break;
             default:
-                Condition.put(conditioni, "Unavailable");
+                Condition = "Unavailable";
                 break;
         }
     }
     
-    public int getYear(){ return Year; }
-    public int getPrice(){ return Price; }
+    public String getYear(){ return Year; }
+    public String getPrice(){ return Price; }
     public String getMake(){ return Make; }
     public String getModel() { return Model; }
     public String getColor() { return Color; }
     public String getStyle() { return Style; }
-    public String getCondition(int condition) { return Condition.get(condition); }
+    public String getCondition() { return Condition; }
 }
