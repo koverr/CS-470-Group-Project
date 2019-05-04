@@ -27,9 +27,9 @@ import javafx.stage.Stage;
 public class LoginPageController implements Initializable {
     SQLConnection sqlconn = new SQLConnection();
     Connection conn = sqlconn.connect();
-    Statement stmt = sqlconn.getStatement();
+    CallableStatement stmt = sqlconn.procedure("user_login(?,?)");
     
-    Statement stmt2 = sqlconn.getStatement();
+    CallableStatement stmt2 = sqlconn.procedure("employee_login(?,?)");
     
     @FXML
     TextField Username;
@@ -46,13 +46,33 @@ public class LoginPageController implements Initializable {
         String pass = Password.getText();
         
         try {
-            ResultSet rs = stmt.executeQuery("SELECT Username FROM User WHERE Username = '" + user + "' AND Password = '" + pass + "';");
-            ResultSet rs2 = stmt2.executeQuery("SELECT EmployeeID FROM Employee WHERE EmployeeID = '" + user + "' AND Password = '" + pass + "';");
-            if ((!rs.isBeforeFirst() && rs.getRow() == 0) && (!rs2.isBeforeFirst() && rs2.getRow() == 0)){
+            stmt.setString(1, user);
+            stmt.setString(2,pass);
+
+            int inEID;
+            try {
+                inEID = Integer.parseInt(user);
+            }
+            catch (Exception e){
+                //System.err.println(e);
+                inEID = -1;
+            }
+            stmt2.setInt(1,inEID);
+
+            stmt2.setString(2,pass);
+
+            boolean s1Results = stmt.execute();
+            boolean s2Results = stmt2.execute();
+
+            ResultSet r1 = stmt.getResultSet();
+            ResultSet r2 = stmt2.getResultSet();
+
+            if ((!r1.next()) && (!r2.next())){
                 Status.setText("Incorrect Username or Password.");    
                 Password.clear();
             }
-            else if (rs.isBeforeFirst()){
+            r1.beforeFirst();r2.beforeFirst();
+            if (r1.next()){
                 Node node=(Node) event.getSource();
                 Stage stage=(Stage) node.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("UserPage.fxml"));
@@ -60,7 +80,8 @@ public class LoginPageController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             }
-            else if (rs2.isBeforeFirst()){
+            else if (r2.next()){
+                System.out.println("Made it here");
                 Node node=(Node) event.getSource();
                 Stage stage=(Stage) node.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("EmployeePage.fxml"));
