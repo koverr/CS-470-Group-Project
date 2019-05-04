@@ -72,10 +72,10 @@ VALUES
     (1957, 2, -1, 'Coupe', 'Porsche', '911 GT2 RS', 2017, 'Yellow', 210),
     (9845, 3, 1, 'Sport', 'Bugatti', 'Veyron', 2012, 'Silver', 560),
     (7298, 3, 2, 'Sport', 'Toyota', 'Supra', 2017, 'Silver', 240),
-    (9172, 4, 1, 'Sedan', 'Mitsubishi', 'Lancer Evolution', 2016, 'Red', 50),
-    (6721, 4, 3, 'Coupe', 'Ford', 'GT', 2017, 'Blue', 220),
-    (1826, 5, -1, 'Sport', 'Lamborghini', 'Centenario', 2017, 'Yellow', 420),
-	(9374, 5, 1, 'Sport', 'Pagani', 'Zonda HP Barchetta', 2017, 'Silver', 530);
+    (9172, 2, 1, 'Sedan', 'Mitsubishi', 'Lancer Evolution', 2016, 'Red', 50),
+    (6721, 1, 3, 'Coupe', 'Ford', 'GT', 2017, 'Blue', 220),
+    (1826, 2, -1, 'Sport', 'Lamborghini', 'Centenario', 2017, 'Yellow', 420),
+	(9374, 1, 1, 'Sport', 'Pagani', 'Zonda HP Barchetta', 2017, 'Silver', 530);
     
 INSERT INTO User (Username, Password, Name, Age, CreditScore, License, Insurance, Balance, PhoneNumber)
 VALUES ('koverbay', 'pass', 'Kory Overbay', 20, 400, 3333, 3434, 0, '(816)673-8479'),
@@ -97,24 +97,18 @@ VALUES (1, 'password1', 'Robert Smith', 1, 1, '(281)342-2367'),
     (4, 'password4', 'Samus Metroid', 2, 2,'(913)917-1845'),
     (5, 'password5', 'Steven Even', 1, 3,'(913)819-1924'),
     (6, 'password6', 'Steeeeeven Eeeeeven', 2, 3,'(816)817-1845'),
-    (7, 'password7', 'Mario Peach', 1, 4,'(816)294-1935'),
-    (8, 'password8', 'Sasquatch Hair', 2, 4,'(913)817-8495'),
-    (9, 'password9', 'Philipo Demagio', 1, 5,'(816)917-8562'),
-    (10, 'password10', 'Jacque Frenchie', 2, 5,'(913)846-1947');
+    (7, 'password7', 'Mario Peach', 1, 2,'(816)294-1935'),
+    (8, 'password8', 'Sasquatch Hair', 2, 2,'(913)817-8495'),
+    (9, 'password9', 'Philipo Demagio', 1, 1,'(816)917-8562'),
+    (10, 'password10', 'Jacque Frenchie', 2, 3,'(913)846-1947');
 
 /*INSERT INTO Rents (VIN, Username, Duration)
 VALUES (
 */
 CREATE VIEW AvailCars AS
-SELECT Year, Make, Model, Price, Color, Style, CarCondition, StoreID
+SELECT Year, Make, Model, Price, Color, Style, CarCondition, StoreID, VIN
 FROM Cars
 WHERE CarCondition != -1;
-
-
-
-SELECT *
-FROM AvailCars
-WHERE CarCondition < 3 AND Price < 200;
 
 
 
