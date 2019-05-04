@@ -1,6 +1,33 @@
+# noinspection SqlNoDataSourceInspectionForFile
+
 DROP SCHEMA IF EXISTS CoolCars;
 CREATE SCHEMA CoolCars;
 USE CoolCars;
+
+DELIMITER //
+
+CREATE PROCEDURE user_car_search(IN sid INT,
+                            IN year  INT,
+                            IN price  INT )
+BEGIN
+    SELECT Year, Make, Model, Price, Color, Style, CarCondition
+        FROM AvailCars WHERE StoreID = sid && Year >= year && Price <= price;
+end //
+
+CREATE PROCEDURE user_login(IN u VARCHAR(30),
+                            IN p VARCHAR(20))
+BEGIN
+    SELECT Username FROM User WHERE Username = u AND Password = p;
+end //
+
+CREATE PROCEDURE employee_login(IN eid INT,
+                                IN p VARCHAR(20))
+BEGIN
+    SELECT EmployeeID FROM Employee WHERE EmployeeID = eid AND Password = p;
+end //
+DELIMITER ;
+
+
 
 CREATE TABLE Location (
 	StoreID INT NOT NULL,
