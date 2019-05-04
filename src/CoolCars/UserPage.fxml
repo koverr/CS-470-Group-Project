@@ -6,15 +6,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CoolCars.UserPageController">
+<AnchorPane id="AnchorPane" prefHeight="334.0" prefWidth="1094.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CoolCars.UserPageController">
    <children>
-      <ChoiceBox id="Location" fx:id="Location" layoutX="117.0" layoutY="45.0" onMouseClicked="#handleSelection" prefWidth="150.0" />
+      <ChoiceBox id="Location" fx:id="Location" layoutX="117.0" layoutY="45.0" prefWidth="150.0" />
       <ChoiceBox id="Year" fx:id="Year" layoutX="117.0" layoutY="121.0" prefWidth="150.0" />
       <Label layoutX="46.0" layoutY="50.0" text="Location" />
       <Label layoutX="46.0" layoutY="126.0" text="Year" />
       <Label layoutX="46.0" layoutY="199.0" text="Price" />
-      <Button id="Search" fx:id="Search" layoutX="160.0" layoutY="279.0" mnemonicParsing="false" text="Search" />
-      <TextField id="Results" fx:id="Results" editable="false" layoutX="325.0" layoutY="31.0" mouseTransparent="true" prefHeight="329.0" prefWidth="311.0" />
+      <Button id="Search" fx:id="Search" defaultButton="true" layoutX="85.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleSearch" text="Search" />
       <TextField id="Price" fx:id="Price" layoutX="103.0" layoutY="194.0" promptText="Enter Max Price" />
+      <Button id="Exit" fx:id="Exit" layoutX="197.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+      <TableView id="Results" fx:id="Results" layoutX="312.0" layoutY="41.0" prefHeight="263.0" prefWidth="753.0">
+        <columns>
+          <TableColumn id="Year" fx:id="YearCol" prefWidth="64.0" text="Year" />
+          <TableColumn id="Make" fx:id="Make" minWidth="0.0" prefWidth="137.0" text="Make" />
+            <TableColumn id="Model" fx:id="Model" prefWidth="136.0" text="Model" />
+            <TableColumn id="Price" fx:id="PriceCol" prefWidth="93.0" text="Price" />
+            <TableColumn id="Color" fx:id="Color" prefWidth="106.0" text="Color" />
+            <TableColumn id="Style" fx:id="Style" prefWidth="101.0" text="Style" />
+            <TableColumn id="Condition" fx:id="Condtion" prefWidth="115.0" text="Condition" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

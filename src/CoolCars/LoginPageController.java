@@ -30,9 +30,6 @@ public class LoginPageController implements Initializable {
     Statement stmt = sqlconn.getStatement();
     
     @FXML
-    private Label label;
-    
-    @FXML
     TextField Username;
     
     @FXML
