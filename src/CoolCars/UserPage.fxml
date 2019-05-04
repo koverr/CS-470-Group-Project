@@ -18,10 +18,10 @@
       <Button id="Exit" fx:id="Exit" layoutX="197.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
       <TableView id="Results" fx:id="Results" layoutX="312.0" layoutY="41.0" prefHeight="263.0" prefWidth="753.0">
         <columns>
-          <TableColumn id="Year" fx:id="YearCol" prefWidth="64.0" text="Year" />
+          <TableColumn id="YearCol" fx:id="YearCol" prefWidth="64.0" text="Year" />
           <TableColumn id="Make" fx:id="Make" minWidth="0.0" prefWidth="137.0" text="Make" />
             <TableColumn id="Model" fx:id="Model" prefWidth="136.0" text="Model" />
-            <TableColumn id="Price" fx:id="PriceCol" prefWidth="93.0" text="Price" />
+            <TableColumn id="PriceCol" fx:id="PriceCol" prefWidth="93.0" text="Price" />
             <TableColumn id="Color" fx:id="Color" prefWidth="106.0" text="Color" />
             <TableColumn id="Style" fx:id="Style" prefWidth="101.0" text="Style" />
             <TableColumn id="Condition" fx:id="Condtion" prefWidth="115.0" text="Condition" />
