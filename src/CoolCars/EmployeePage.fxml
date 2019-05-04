@@ -6,6 +6,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="436.0" prefWidth="670.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="CoolCars.EmployeePageController">
+   <children>
+      <ChoiceBox layoutX="198.0" layoutY="59.0" prefHeight="27.0" prefWidth="275.0" />
+      <Label layoutX="313.0" layoutY="27.0" text="Location" />
+      <TableView layoutX="21.0" layoutY="118.0" prefHeight="200.0" prefWidth="628.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="VIN" />
+          <TableColumn prefWidth="75.0" text="Condition" />
+            <TableColumn prefWidth="75.0" text="Style" />
+            <TableColumn prefWidth="75.0" text="Make" />
+            <TableColumn prefWidth="75.0" text="Model" />
+            <TableColumn prefWidth="75.0" text="Year" />
+            <TableColumn prefWidth="92.0" text="Color" />
+            <TableColumn prefWidth="84.0" text="Price" />
+        </columns>
+      </TableView>
+      <Button layoutX="169.0" layoutY="364.0" mnemonicParsing="false" text="Add Car" />
+      <Button layoutX="307.0" layoutY="364.0" mnemonicParsing="false" text="Edit Car" />
+      <Button layoutX="437.0" layoutY="364.0" mnemonicParsing="false" text="Delete Car" />
+   </children>
 </AnchorPane>
