@@ -73,8 +73,8 @@ public class UserPageController implements Initializable {
             
             while (rs.next()){
                 //YearCol.setCellFactory(rs.getString(1));
-                query = new CarSearch(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
-                search.add(query);
+                //query = new CarSearch(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+                //search.add(query);
                 
                 
             }
@@ -121,13 +121,13 @@ public class UserPageController implements Initializable {
         }
         
         search = FXCollections.observableArrayList();
-        YearCol.setCellFactory(new PropertyValueFactory<>("YearCol"));
+        /*YearCol.setCellFactory(new PropertyValueFactory<>("YearCol"));
         Make.setCellFactory(new PropertyValueFactory<>("Make"));
         Model.setCellFactory(new PropertyValueFactory<>("Model"));
         PriceCol.setCellFactory(new PropertyValueFactory<>("PriceCol"));
         Color.setCellFactory(new PropertyValueFactory<>("Color"));
         Style.setCellFactory(new PropertyValueFactory<>("Style"));
-        Condition.setCellFactory(new PropertyValueFactory<>("Condition"));
+        Condition.setCellFactory(new PropertyValueFactory<>("Condition"));*/
         
         
     }    

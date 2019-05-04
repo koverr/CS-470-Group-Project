@@ -11,7 +11,7 @@ import java.util.HashMap;
  * @author koryo
  */
 public class CarSearch {
-    private String Year, Price, Make, Model, Color, Style, Condition;
+    private String Year, Price, Make, Model, Color, Style, Condition, Vin;
     
     public CarSearch (String year, String make, String model, String price, String color, String style, String condition) {
         Year = year;
