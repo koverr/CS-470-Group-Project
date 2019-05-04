@@ -16,7 +16,7 @@
       <Button id="Search" fx:id="Search" defaultButton="true" layoutX="85.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleSearch" text="Search" />
       <TextField id="Price" fx:id="Price" layoutX="103.0" layoutY="194.0" promptText="Enter Max Price" />
       <Button id="Exit" fx:id="Exit" layoutX="197.0" layoutY="270.0" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-      <TableView id="Results" fx:id="Results" layoutX="312.0" layoutY="41.0" prefHeight="263.0" prefWidth="753.0">
+      <TableView id="Results" fx:id="Results" editable="true" layoutX="312.0" layoutY="41.0" prefHeight="263.0" prefWidth="753.0">
         <columns>
           <TableColumn id="YearCol" fx:id="YearCol" prefWidth="64.0" text="Year" />
           <TableColumn id="Make" fx:id="Make" minWidth="0.0" prefWidth="137.0" text="Make" />
@@ -24,7 +24,7 @@
             <TableColumn id="PriceCol" fx:id="PriceCol" prefWidth="93.0" text="Price" />
             <TableColumn id="Color" fx:id="Color" prefWidth="106.0" text="Color" />
             <TableColumn id="Style" fx:id="Style" prefWidth="101.0" text="Style" />
-            <TableColumn id="Condition" fx:id="Condtion" prefWidth="115.0" text="Condition" />
+            <TableColumn id="Condition" fx:id="Condition" prefWidth="115.0" text="Condition" />
         </columns>
       </TableView>
    </children>
