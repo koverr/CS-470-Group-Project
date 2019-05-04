@@ -24,7 +24,7 @@ CREATE PROCEDURE employee_login(IN eid INT,
                                 IN p VARCHAR(20))
 BEGIN
     SELECT EmployeeID FROM Employee WHERE EmployeeID = eid AND Password = p;
-end //
+END //
 DELIMITER ;
 
 

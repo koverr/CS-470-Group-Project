@@ -16,7 +16,7 @@ public class SQLConnection {
     public SQLConnection(){
         USERNAME = "root";
         PASSWORD = "";
-        CONN_STRING = "jdbc:mysql://localhost:3306/coolcars";
+        CONN_STRING = "jdbc:mysql://localhost:3307/coolcars";
     }
 
     public Connection connect(){
@@ -35,6 +35,18 @@ public class SQLConnection {
             System.err.print(e);
         }
         return stmt;
+    }
+
+    public CallableStatement procedure(String s){
+        try{
+            CallableStatement c = conn.prepareCall("{call " + s + "}");
+            return c;
+        }
+        catch (Exception e)
+        {
+            System.err.println(e);
+        }
+        return null;
     }
 }
 
