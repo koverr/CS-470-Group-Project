@@ -52,19 +52,24 @@ public class AddCarPageController implements Initializable {
     @FXML
     private void handleAddCar(ActionEvent event) throws IOException {
 
-
-        int theStoreID = (int) StoreID.getValue();
-        int theYear = (int) Year.getValue();
+        //sorry not sorry
+        int theVin = -1;
+        int thePrice = -1;
+        String stringStoreID = (String) StoreID.getValue();
+        String stringYear = (String) Year.getValue();
         String theStyle = (String) Style.getValue();
         String theMake = (String) Make.getValue();
         String theModel = (String) Model.getValue();
         String theColor = (String) Color.getValue();
-        int theVin =  Integer.parseInt(VIN.getText());
-        int thePrice = Integer.parseInt(Price.getText());
-
+        String stringVin = VIN.getText();
+        String stringPrice = Price.getText();
+        theVin = Integer.parseInt(stringVin);
+        thePrice = Integer.parseInt(stringPrice);
+        int theStoreID = Integer.parseInt(stringStoreID);
+        int theYear = Integer.parseInt(stringYear);
         String cond = (String) Condition.getValue();
         int theCondition;
-        switch (cond){
+        switch (cond) {
             case "New":
                 theCondition = 1;
                 break;
@@ -88,7 +93,7 @@ public class AddCarPageController implements Initializable {
             addCar.setString(6, theModel);
             addCar.setInt(7, theYear);
             addCar.setString(8, theColor);
-            addCar.setInt(8, thePrice);
+            addCar.setInt(9, thePrice);
             addCar.execute();
         }
         catch(Exception e)
