@@ -16,7 +16,7 @@ public class SQLConnection {
     public SQLConnection(){
         USERNAME = "root";
         PASSWORD = "";
-        CONN_STRING = "jdbc:mysql://localhost:3307/coolcars";
+        CONN_STRING = "jdbc:mysql://localhost:3306/coolcars";
     }
 
     public Connection connect(){

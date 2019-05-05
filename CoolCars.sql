@@ -7,11 +7,11 @@ USE CoolCars;
 DELIMITER //
 
 CREATE PROCEDURE user_car_search(IN sid INT,
-                            IN year  INT,
-                            IN price  INT )
+                            IN yearJ  INT,
+                            IN priceJ  INT )
 BEGIN
-    SELECT Year, Make, Model, Price, Color, Style, CarCondition
-        FROM AvailCars WHERE StoreID = sid && Year >= year && Price <= price;
+    SELECT CarCondition, Style, Make, Model, Year, Color, Price
+        FROM AvailCars WHERE StoreID = sid AND Year >= yearJ AND Price <= priceJ;
 end //
 
 CREATE PROCEDURE user_login(IN u VARCHAR(30),

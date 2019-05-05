@@ -56,7 +56,7 @@ public class UserPageController implements Initializable {
     private void handleSearch(ActionEvent event) throws IOException {
         String location = (String) Location.getValue();
         String year = (String) Year.getValue();
-        String price = Price.getText();             //UNREADABLE????????????????????
+        String price = Price.getText();
 
 
 
