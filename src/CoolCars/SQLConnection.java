@@ -16,7 +16,7 @@ public class SQLConnection {
     public SQLConnection(){
         USERNAME = "root";
         PASSWORD = "";
-        CONN_STRING = "jdbc:mysql://localhost:3306/coolcars";
+        CONN_STRING = "jdbc:mysql://localhost:3307/coolcars";
     }
 
     public Connection connect(){
@@ -24,6 +24,7 @@ public class SQLConnection {
             conn = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
         } catch (SQLException e){
             System.err.print(e);
+
         }
         return conn;
     }

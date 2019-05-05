@@ -7,10 +7,7 @@ package CoolCars;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,7 +36,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class UserPageController implements Initializable {
     SQLConnection sqlconn = new SQLConnection();
     Connection conn = sqlconn.connect();
-    Statement stmt = sqlconn.getStatement();
+    CallableStatement stmt = sqlconn.procedure("user_car_search(?,?,?)");
     HashMap<String, Integer> stores = new HashMap<>();
     final ObservableList<Car> search = FXCollections.observableArrayList();
     
@@ -60,16 +57,20 @@ public class UserPageController implements Initializable {
         String location = (String) Location.getValue();
         String year = (String) Year.getValue();
         String price = Price.getText();             //UNREADABLE????????????????????
-        
-       
-        
+
+
+
        
         try {
+            stmt.setInt(1, stores.get(location));
+            stmt.setInt(2, Integer.parseInt(year));
+            stmt.setInt(3, Integer.parseInt(price));
+
+            stmt.execute();
+
             search.clear();
             
-            ResultSet rs = stmt.executeQuery("SELECT CarCondition, Style, Make, Model, Year, Color, Price"
-                                            + " FROM AvailCars "
-                                            + "WHERE StoreID = " + stores.get(location) + " && Year >= " + year + " && Price <= " + price + ";");            
+            ResultSet rs = stmt.getResultSet();
         
             while (rs.next()){
                 search.add(new Car(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
