@@ -117,13 +117,13 @@ public class UserPageController implements Initializable {
         }
         
         
-        YearCol.setCellValueFactory(new PropertyValueFactory<Car, String>("Year"));
-        MakeCol.setCellValueFactory(new PropertyValueFactory<Car, String>("Make"));
-        ModelCol.setCellValueFactory(new PropertyValueFactory<Car, String>("Model"));
-        PriceCol.setCellValueFactory(new PropertyValueFactory<Car, String>("Price"));
-        ColorCol.setCellValueFactory(new PropertyValueFactory<Car, String>("Color"));
-        StyleCol.setCellValueFactory(new PropertyValueFactory<Car, String>("Style"));
-        ConditionCol.setCellValueFactory(new PropertyValueFactory<Car, String>("Condition"));
+        YearCol.setCellValueFactory(new PropertyValueFactory<>("Year"));
+        MakeCol.setCellValueFactory(new PropertyValueFactory<>("Make"));
+        ModelCol.setCellValueFactory(new PropertyValueFactory<>("Model"));
+        PriceCol.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        ColorCol.setCellValueFactory(new PropertyValueFactory<>("Color"));
+        StyleCol.setCellValueFactory(new PropertyValueFactory<>("Style"));
+        ConditionCol.setCellValueFactory(new PropertyValueFactory<>("Condition"));
         
         Results.setItems(search);
         

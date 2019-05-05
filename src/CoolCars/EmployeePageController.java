@@ -120,14 +120,14 @@ public class EmployeePageController implements Initializable {
         
         
         //Map Car Model Class to TableView columns
-        VINCol.setCellValueFactory( new PropertyValueFactory<Car,String>("Vin"));
-        ConditionCol.setCellValueFactory( new PropertyValueFactory<Car,String>("Condition"));
-        StyleCol.setCellValueFactory( new PropertyValueFactory<Car,String>("Style"));
-        MakeCol.setCellValueFactory( new PropertyValueFactory<Car,String>("Make"));
-        ModelCol.setCellValueFactory( new PropertyValueFactory<Car,String>("Model"));
-        YearCol.setCellValueFactory( new PropertyValueFactory<Car,String>("Year"));
-        ColorCol.setCellValueFactory( new PropertyValueFactory<Car,String>("Color"));
-        PriceCol.setCellValueFactory( new PropertyValueFactory<Car,String>("Price"));
+        VINCol.setCellValueFactory( new PropertyValueFactory<>("Vin"));
+        ConditionCol.setCellValueFactory( new PropertyValueFactory<>("Condition"));
+        StyleCol.setCellValueFactory( new PropertyValueFactory<>("Style"));
+        MakeCol.setCellValueFactory( new PropertyValueFactory<>("Make"));
+        ModelCol.setCellValueFactory( new PropertyValueFactory<>("Model"));
+        YearCol.setCellValueFactory( new PropertyValueFactory<>("Year"));
+        ColorCol.setCellValueFactory( new PropertyValueFactory<>("Color"));
+        PriceCol.setCellValueFactory( new PropertyValueFactory<>("Price"));
         
         
         CarTable.setItems(localCarData);
