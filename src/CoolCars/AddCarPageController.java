@@ -7,6 +7,7 @@ package CoolCars;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +27,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.jws.WebParam;
+
 /**
  * FXML Controller class
  *
@@ -32,9 +36,11 @@ import javafx.stage.Stage;
  */
 public class AddCarPageController implements Initializable {
 
+    int conditioni;
     SQLConnection sqlconn = new SQLConnection();
     Connection conn = sqlconn.connect();
     Statement normS = sqlconn.getStatement();
+    CallableStatement addCar = sqlconn.procedure("add_car(?,?,?,?,?,?,?,?,?)");
     HashMap<String, String> stores = new HashMap<>();
 
     @FXML
@@ -45,10 +51,50 @@ public class AddCarPageController implements Initializable {
 
     @FXML
     private void handleAddCar(ActionEvent event) throws IOException {
+
+
+        int theStoreID = (int) StoreID.getValue();
+        int theYear = (int) Year.getValue();
+        String theStyle = (String) Style.getValue();
+        String theMake = (String) Make.getValue();
+        String theModel = (String) Model.getValue();
+        String theColor = (String) Color.getValue();
         int theVin =  Integer.parseInt(VIN.getText());
         int thePrice = Integer.parseInt(Price.getText());
-        
 
+        String cond = (String) Condition.getValue();
+        int theCondition;
+        switch (cond){
+            case "New":
+                theCondition = 1;
+                break;
+            case "Fair":
+                theCondition = 2;
+                break;
+            case "Used":
+                theCondition = 3;
+                break;
+            default:
+                theCondition = -1;
+                break;
+        }
+
+        try{
+            addCar.setInt(1,theVin);
+            addCar.setInt(2,theStoreID);
+            addCar.setInt(3, theCondition);
+            addCar.setString(4, theStyle);
+            addCar.setString(5, theMake);
+            addCar.setString(6, theModel);
+            addCar.setInt(7, theYear);
+            addCar.setString(8, theColor);
+            addCar.setInt(8, thePrice);
+            addCar.execute();
+        }
+        catch(Exception e)
+        {
+            System.err.println(e);
+        }
     }
 
     @FXML
@@ -71,7 +117,7 @@ public class AddCarPageController implements Initializable {
             int i = 1;
             while(rs.next()){
                 String aCondition =rs.getString(1);
-                int conditioni = Integer.parseInt(aCondition);
+                conditioni = Integer.parseInt(aCondition);
                 switch (conditioni) {
                     case 1:
                         aCondition = "New";
@@ -120,10 +166,10 @@ public class AddCarPageController implements Initializable {
             while (rs.next()) {
                 stores.put(rs.getString(1), rs.getString(2));
                 StoreID.getItems().add(rs.getString(1));
-               
+
             }
             Address.textProperty().bind(StoreID.getSelectionModel().selectedItemProperty());
-            
+
         }  catch (SQLException e) {
             System.out.println(e);
             System.out.println("2");
