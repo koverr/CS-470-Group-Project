@@ -42,12 +42,13 @@ public class EmployeePageController implements Initializable {
     
     //Stores all the cars and their data at a given location
     final ObservableList<Car> localCarData = FXCollections.observableArrayList();
+    Car Selected;
     
     @FXML
     ChoiceBox Location;
     
     @FXML
-    TableView CarTable;
+    TableView<Car> CarTable;
     
     @FXML
     TableColumn VINCol, ConditionCol, StyleCol, MakeCol, ModelCol, YearCol, ColorCol, PriceCol;
@@ -92,6 +93,27 @@ public class EmployeePageController implements Initializable {
         stage.show();
     }
 
+    @FXML
+    private void handleEdit(ActionEvent event) throws IOException{
+        Selected = CarTable.getSelectionModel().getSelectedItem();
+        
+        FXMLLoader Loader = new FXMLLoader();
+        Loader.setLocation(getClass().getResource("EditCarPage.fxml"));
+        try{
+            Loader.load();
+        } catch (IOException ex){
+            System.err.println(ex);
+        }
+        EditCarPageController editPage = Loader.getController();
+        editPage.setCar(Selected);
+        
+        Parent p = Loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(p));
+        stage.show();
+    }
+    
+    
     @FXML
     private void handleExit(ActionEvent event) throws IOException{
         Node node=(Node) event.getSource();

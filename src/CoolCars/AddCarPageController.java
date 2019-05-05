@@ -15,7 +15,6 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +26,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import javax.jws.WebParam;
 
 /**
  * FXML Controller class
@@ -36,7 +34,6 @@ import javax.jws.WebParam;
  */
 public class AddCarPageController implements Initializable {
 
-    int conditioni;
     SQLConnection sqlconn = new SQLConnection();
     Connection conn = sqlconn.connect();
     Statement normS = sqlconn.getStatement();
@@ -91,7 +88,7 @@ public class AddCarPageController implements Initializable {
             addCar.setInt(8, thePrice);
             addCar.execute();
         }
-        catch(Exception e)
+        catch(SQLException e)
         {
             System.err.println(e);
         }
@@ -117,7 +114,7 @@ public class AddCarPageController implements Initializable {
             int i = 1;
             while(rs.next()){
                 String aCondition =rs.getString(1);
-                conditioni = Integer.parseInt(aCondition);
+                int conditioni = Integer.parseInt(aCondition);
                 switch (conditioni) {
                     case 1:
                         aCondition = "New";
