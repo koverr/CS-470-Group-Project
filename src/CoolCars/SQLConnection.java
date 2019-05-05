@@ -11,10 +11,10 @@ public class SQLConnection {
     Connection conn;
     Statement stmt;
     private ResourceBundle reader = null;
-    private static final String FILENAME = "resources/dbconfig";
+    private static String FILENAME;
     
     public SQLConnection(){
-        
+        FILENAME = "resources/dbconfig";
     }
 
     public Connection connect(){
