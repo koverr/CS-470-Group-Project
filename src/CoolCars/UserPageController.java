@@ -42,7 +42,7 @@ public class UserPageController implements Initializable {
     Connection conn = sqlconn.connect();
     Statement stmt = sqlconn.getStatement();
     HashMap<String, Integer> stores = new HashMap<>();
-    ObservableList<Car> search;
+    final ObservableList<Car> search = FXCollections.observableArrayList();
     
     @FXML
     ChoiceBox Location, Year;
@@ -51,22 +51,24 @@ public class UserPageController implements Initializable {
     TextField Price;
     
     @FXML
-    TableView<Car> Results;
+    TableView Results;
     
     @FXML
-    TableColumn YearCol, Make, Model, PriceCol, Color, Style, Condition;
+    TableColumn YearCol, MakeCol, ModelCol, PriceCol, ColorCol, StyleCol, ConditionCol;
     
     @FXML
     private void handleSearch(ActionEvent event) throws IOException {
         String location = (String) Location.getValue();
         String year = (String) Year.getValue();
         String price = Price.getText();             //UNREADABLE????????????????????
-        Car query;
         
        
         
        
         try {
+            
+            search.clear();
+            
             ResultSet rs = stmt.executeQuery("SELECT Year, Make, Model, Price, Color, Style, CarCondition"
                                             + " FROM AvailCars "
                                             + "WHERE StoreID = " + stores.get(location) + " && Year >= " + year + " && Price <= " + price + ";");            
@@ -115,14 +117,14 @@ public class UserPageController implements Initializable {
             System.out.println(e);
         }
         
-        search = FXCollections.observableArrayList();
-        YearCol.setCellFactory(new PropertyValueFactory<>("YearCol"));
-        Make.setCellFactory(new PropertyValueFactory<>("Make"));
-        Model.setCellFactory(new PropertyValueFactory<>("Model"));
-        PriceCol.setCellFactory(new PropertyValueFactory<>("PriceCol"));
-        Color.setCellFactory(new PropertyValueFactory<>("Color"));
-        Style.setCellFactory(new PropertyValueFactory<>("Style"));
-        Condition.setCellFactory(new PropertyValueFactory<>("Condition"));
+        
+        YearCol.setCellValueFactory(new PropertyValueFactory<Car, String>("Year"));
+        MakeCol.setCellValueFactory(new PropertyValueFactory<Car, String>("Make"));
+        ModelCol.setCellValueFactory(new PropertyValueFactory<Car, String>("Model"));
+        PriceCol.setCellValueFactory(new PropertyValueFactory<Car, String>("Price"));
+        ColorCol.setCellValueFactory(new PropertyValueFactory<Car, String>("Color"));
+        StyleCol.setCellValueFactory(new PropertyValueFactory<Car, String>("Style"));
+        ConditionCol.setCellValueFactory(new PropertyValueFactory<Car, String>("Condition"));
         
         Results.setItems(search);
         
