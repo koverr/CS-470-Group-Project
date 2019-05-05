@@ -81,7 +81,7 @@ public class LoginPageController implements Initializable {
                 stage.show();
             }
             else if (r2.next()){
-                System.out.println("Made it here");
+
                 Node node=(Node) event.getSource();
                 Stage stage=(Stage) node.getScene().getWindow();
                 Parent root = FXMLLoader.load(getClass().getResource("EmployeePage.fxml"));
@@ -97,6 +97,5 @@ public class LoginPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
 }
