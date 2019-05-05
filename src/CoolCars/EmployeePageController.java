@@ -127,6 +127,11 @@ public class EmployeePageController implements Initializable {
         stage.show();
     }
     
+    @FXML
+    private void handleRent(ActionEvent event) throws IOException{
+        //TODO
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try{
