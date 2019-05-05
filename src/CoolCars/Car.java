@@ -18,7 +18,21 @@ public class Car {
     public Car(String condition, String style, String make, 
             String model, String year, String color, String price){
         this.Vin = new SimpleStringProperty();
-        this.Condition = new SimpleStringProperty(condition);
+        int conditioni = Integer.parseInt(condition);
+        switch (conditioni) {
+            case 1:
+                Condition = new SimpleStringProperty("New");
+                break;
+            case 2:
+                Condition = new SimpleStringProperty("Fair");
+                break;
+            case 3:
+                Condition = new SimpleStringProperty("Used");
+                break;
+            default:
+                Condition = new SimpleStringProperty("Unavailable");;
+                break;
+        }
         this.Style = new SimpleStringProperty(style);
         this.Make = new SimpleStringProperty(make);
         this.Model = new SimpleStringProperty(model);
@@ -30,7 +44,21 @@ public class Car {
     public Car(String vin, String condition, String style, String make, 
             String model, String year, String color, String price){
         this.Vin = new SimpleStringProperty(vin);
-        this.Condition = new SimpleStringProperty(condition);
+        int conditioni = Integer.parseInt(condition);
+        switch (conditioni) {
+            case 1:
+                Condition = new SimpleStringProperty("New");
+                break;
+            case 2:
+                Condition = new SimpleStringProperty("Fair");
+                break;
+            case 3:
+                Condition = new SimpleStringProperty("Used");
+                break;
+            default:
+                Condition = new SimpleStringProperty("Unavailable");;
+                break;
+        }
         this.Style = new SimpleStringProperty(style);
         this.Make = new SimpleStringProperty(make);
         this.Model = new SimpleStringProperty(model);
