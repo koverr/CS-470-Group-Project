@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
@@ -66,10 +65,9 @@ public class UserPageController implements Initializable {
         
        
         try {
-            
             search.clear();
             
-            ResultSet rs = stmt.executeQuery("SELECT Year, Make, Model, Price, Color, Style, CarCondition"
+            ResultSet rs = stmt.executeQuery("SELECT CarCondition, Style, Make, Model, Year, Color, Price"
                                             + " FROM AvailCars "
                                             + "WHERE StoreID = " + stores.get(location) + " && Year >= " + year + " && Price <= " + price + ";");            
         
@@ -87,7 +85,6 @@ public class UserPageController implements Initializable {
     private void handleExit(ActionEvent event) throws IOException{
         Node node=(Node) event.getSource();
         Stage stage=(Stage) node.getScene().getWindow();
-        System.out.println("YOYOYOYOYO");
         Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));/* Exception */
         Scene scene = new Scene(root);
         stage.setScene(scene);
