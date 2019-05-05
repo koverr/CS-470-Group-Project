@@ -29,7 +29,7 @@ public class EditCarPageController implements Initializable {
     SQLConnection sqlconn = new SQLConnection();
     Connection conn = sqlconn.connect();
     Statement normS = sqlconn.getStatement();
-    CallableStatement addCar = sqlconn.procedure("add_car(?,?,?,?,?,?,?,?,?)");
+    CallableStatement editCar = sqlconn.procedure("edit_car(?,?,?,?,?)");
     HashMap<String, String> stores = new HashMap<>();
     Car current;
 
@@ -43,7 +43,40 @@ public class EditCarPageController implements Initializable {
     
     @FXML
     private void handleEditCar(ActionEvent event) throws IOException{
-        
+        int theVin = Integer.parseInt(VIN.getText());
+        int theStoreID = (int) StoreID.getValue();
+        String theColor = Color.getText();
+        int thePrice = Integer.parseInt(Price.getText());
+        String cond = (String) Condition.getValue();
+        int theCondition;
+        switch (cond) {
+            case "New":
+                theCondition = 1;
+                break;
+            case "Fair":
+                theCondition = 2;
+                break;
+            case "Used":
+                theCondition = 3;
+                break;
+            default:
+                theCondition = -1;
+                break;
+        }
+
+        try{
+            editCar.setInt(1, theVin);
+            editCar.setInt(2, theStoreID);
+            editCar.setInt(3,theCondition);
+            editCar.setString(4,theColor);
+            editCar.setInt(5,thePrice);
+            editCar.execute();
+
+        }
+        catch(Exception e)
+        {
+            System.err.println(e);
+        }
     }
     
     
