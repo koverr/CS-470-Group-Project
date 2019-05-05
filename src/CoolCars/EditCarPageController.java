@@ -46,8 +46,10 @@ public class EditCarPageController implements Initializable {
     
     @FXML
     private void handleEditCar(ActionEvent event) throws IOException{
-        int theVin = Integer.parseInt(VIN.getText());
-        int theStoreID = (int) StoreID.getValue();
+        String stringVin = VIN.getText();
+        String stringStoreID = (String) StoreID.getValue();
+        int theVin = Integer.parseInt(stringVin);
+        int theStoreID = Integer.parseInt(stringStoreID);
         String theColor = Color.getText();
         int thePrice = Integer.parseInt(Price.getText());
         String cond = (String) Condition.getValue();
