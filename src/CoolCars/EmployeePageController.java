@@ -92,7 +92,15 @@ public class EmployeePageController implements Initializable {
         stage.show();
     }
 
-    
+    @FXML
+    private void handleExit(ActionEvent event) throws IOException{
+        Node node=(Node) event.getSource();
+        Stage stage=(Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
