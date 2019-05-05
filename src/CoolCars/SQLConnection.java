@@ -5,23 +5,22 @@
  */
 package CoolCars;
 import java.sql.*;
+import java.util.ResourceBundle;
 
 public class SQLConnection {
-    private final String USERNAME;
-    private final String PASSWORD;
-    private final String CONN_STRING;
     Connection conn;
     Statement stmt;
+    private ResourceBundle reader = null;
+    private static final String FILENAME = "resources/dbconfig";
     
     public SQLConnection(){
-        USERNAME = "root";
-        PASSWORD = "";
-        CONN_STRING = "jdbc:mysql://localhost:3306/coolcars";
+        
     }
 
     public Connection connect(){
         try {
-            conn = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
+            reader = ResourceBundle.getBundle(FILENAME);
+            conn=DriverManager.getConnection(reader.getString("db.url"),reader.getString("db.username"),reader.getString("db.password"));
         } catch (SQLException e){
             System.err.print(e);
 
