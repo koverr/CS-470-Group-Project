@@ -1,8 +1,16 @@
 # noinspection SqlNoDataSourceInspectionForFile
 
+
 DROP SCHEMA IF EXISTS CoolCars;
 CREATE SCHEMA CoolCars;
+DROP USER IF EXISTS renters@localhost;
+CREATE USER renters@localhost IDENTIFIED BY 'pass1';
+
+
+
 USE CoolCars;
+
+
 
 DELIMITER //
 
@@ -113,6 +121,8 @@ CREATE TABLE Helped_By (
     PRIMARY KEY (Ticket),
     CONSTRAINT FK_Employee_EmployeeID FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID),
     CONSTRAINT FK_User_Username FOREIGN KEY (Username) REFERENCES User(Username));
+    
+    
 
 INSERT INTO Location (StoreID, Address, PhoneNumber, ManagerID)
 VALUES (1, '422 Roberts St', '(122)435-7688', 1), (2, '256 South Andes Ave', '(623)455-6113', 2), (3, '754 Main St', '(816)435-7222', 3);
@@ -163,6 +173,9 @@ SELECT Year, Make, Model, Price, Color, Style, CarCondition, StoreID, VIN
 FROM Cars
 WHERE CarCondition != -1;
 
+GRANT SELECT on coolcars.availcars to renters@localhost;
+GRANT SELECT (year) ON coolcars.cars to renters@localhost;
+GRANT SELECT (Address) ON coolcars.location to renters@localhost;
 
 
 
