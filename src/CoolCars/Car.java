@@ -15,6 +15,18 @@ public class Car {
     private final SimpleStringProperty Color;
     private final SimpleStringProperty Price;
     
+    public Car(String condition, String style, String make, 
+            String model, String year, String color, String price){
+        this.Vin = new SimpleStringProperty();
+        this.Condition = new SimpleStringProperty(condition);
+        this.Style = new SimpleStringProperty(style);
+        this.Make = new SimpleStringProperty(make);
+        this.Model = new SimpleStringProperty(model);
+        this.Year = new SimpleStringProperty(year);
+        this.Color = new SimpleStringProperty(color);
+        this.Price = new SimpleStringProperty(price);
+    }
+    
     public Car(String vin, String condition, String style, String make, 
             String model, String year, String color, String price){
         this.Vin = new SimpleStringProperty(vin);

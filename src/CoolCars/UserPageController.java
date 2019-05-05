@@ -42,7 +42,7 @@ public class UserPageController implements Initializable {
     Connection conn = sqlconn.connect();
     Statement stmt = sqlconn.getStatement();
     HashMap<String, Integer> stores = new HashMap<>();
-    ObservableList<CarSearch> search;
+    ObservableList<Car> search;
     
     @FXML
     ChoiceBox Location, Year;
@@ -51,17 +51,17 @@ public class UserPageController implements Initializable {
     TextField Price;
     
     @FXML
-    TableView<CarSearch> Results;
+    TableView<Car> Results;
     
     @FXML
-    TableColumn<CarSearch, String> YearCol, Make, Model, PriceCol, Color, Style, Condition;
+    TableColumn YearCol, Make, Model, PriceCol, Color, Style, Condition;
     
     @FXML
     private void handleSearch(ActionEvent event) throws IOException {
         String location = (String) Location.getValue();
         String year = (String) Year.getValue();
         String price = Price.getText();             //UNREADABLE????????????????????
-        CarSearch query;
+        Car query;
         
        
         
@@ -72,14 +72,9 @@ public class UserPageController implements Initializable {
                                             + "WHERE StoreID = " + stores.get(location) + " && Year >= " + year + " && Price <= " + price + ";");            
         
             while (rs.next()){
-                //YearCol.setCellFactory(rs.getString(1));
-                //query = new CarSearch(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
-                //search.add(query);
-                
-                
+                search.add(new Car(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
             }
             Results.setItems(search);
-            Results.getColumns().addAll(YearCol, Make, Model, PriceCol, Color, Style, Condition);
             
         } catch (SQLException e){
             System.err.println(e);
@@ -121,14 +116,15 @@ public class UserPageController implements Initializable {
         }
         
         search = FXCollections.observableArrayList();
-        /*YearCol.setCellFactory(new PropertyValueFactory<>("YearCol"));
+        YearCol.setCellFactory(new PropertyValueFactory<>("YearCol"));
         Make.setCellFactory(new PropertyValueFactory<>("Make"));
         Model.setCellFactory(new PropertyValueFactory<>("Model"));
         PriceCol.setCellFactory(new PropertyValueFactory<>("PriceCol"));
         Color.setCellFactory(new PropertyValueFactory<>("Color"));
         Style.setCellFactory(new PropertyValueFactory<>("Style"));
-        Condition.setCellFactory(new PropertyValueFactory<>("Condition"));*/
+        Condition.setCellFactory(new PropertyValueFactory<>("Condition"));
         
+        Results.setItems(search);
         
     }    
     
