@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="612.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="CoolCars.EditCarPageController">
    <children>
-      <TextField disable="true" editable="false" layoutX="229.0" layoutY="118.0" />
+      <TextField fx:id="VIN" disable="true" layoutX="229.0" layoutY="118.0" />
       <ChoiceBox fx:id="Condition" layoutX="229.0" layoutY="176.0" prefHeight="39.0" prefWidth="224.0" />
       <Label layoutX="90.0" layoutY="182.0" text="Condition" />
       <Label layoutX="111.0" layoutY="241.0" text="Style" />
@@ -23,11 +23,11 @@
       <Label layoutX="101.0" layoutY="71.0" text="Store ID" />
       <ChoiceBox fx:id="StoreID" layoutX="158.0" layoutY="60.0" prefHeight="39.0" prefWidth="53.0" />
       <Button id="Exit" fx:id="Exit" layoutX="309.0" layoutY="567.0" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-      <TextField id="Address" fx:id="Address" disable="true" editable="false" layoutX="229.0" layoutY="67.0" prefHeight="26.0" prefWidth="224.0" />
+      <TextField id="Address" fx:id="Address" disable="true" layoutX="229.0" layoutY="67.0" prefHeight="26.0" prefWidth="224.0" />
       <TextField id="Color" fx:id="Color" layoutX="229.0" layoutY="455.0" promptText="Color" />
-      <TextField id="Year" fx:id="Year" disable="true" editable="false" layoutX="229.0" layoutY="405.0" />
-      <TextField fx:id="Model" disable="true" editable="false" layoutX="229.0" layoutY="346.0" />
-      <TextField id="Make" fx:id="Make" disable="true" editable="false" layoutX="229.0" layoutY="291.0" />
-      <TextField id="Style" fx:id="Style" disable="true" editable="false" layoutX="229.0" layoutY="237.0" />
+      <TextField id="Year" fx:id="Year" disable="true" layoutX="229.0" layoutY="405.0" />
+      <TextField fx:id="Model" disable="true" layoutX="229.0" layoutY="346.0" />
+      <TextField id="Make" fx:id="Make" disable="true" layoutX="229.0" layoutY="291.0" />
+      <TextField id="Style" fx:id="Style" disable="true" layoutX="229.0" layoutY="237.0" />
    </children>
 </AnchorPane>

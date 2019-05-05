@@ -9,9 +9,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +35,6 @@ public class EditCarPageController implements Initializable {
     Statement normS = sqlconn.getStatement();
     CallableStatement addCar = sqlconn.procedure("add_car(?,?,?,?,?,?,?,?,?)");
     HashMap<String, String> stores = new HashMap<>();
-    Car current;
 
     @FXML
     ChoiceBox Condition, StoreID;
@@ -57,13 +60,36 @@ public class EditCarPageController implements Initializable {
         stage.show();
     }
     
-    public void setCar(Car car){
-        current = car;
+    public void setCar(String vin, String condition, String style, String make, String model, String year, String color, String price){
+        
+        try {
+            ResultSet rs = normS.executeQuery("SELECT DISTINCT Cars.StoreID, Address FROM Cars JOIN Location ON Cars.StoreID = Location.StoreID;");
+            while (rs.next()) {
+                stores.put(rs.getString(1), rs.getString(2));
+                StoreID.getItems().add(rs.getString(1));
+            }
+            Address.textProperty().bind(StoreID.getSelectionModel().selectedItemProperty());
+            
+            this.VIN.setText(vin);
+            this.Condition.getItems().addAll("New", "Fair", "Used", "Unavailable");
+            this.Condition.setValue(condition);
+            this.Style.setText(style);
+            this.Make.setText(make);
+            this.Model.setText(model);
+            this.Year.setText(year);
+            this.Color.setText(color);
+            this.Price.setText(price);
+            
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       
+        
+            
     }    
     
 }

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,8 +42,7 @@ public class EmployeePageController implements Initializable {
     HashMap<String, Integer> locationData = new HashMap<>();
     
     //Stores all the cars and their data at a given location
-    final ObservableList<Car> localCarData = FXCollections.observableArrayList();
-    Car Selected;
+    ObservableList<Car> localCarData = FXCollections.observableArrayList();
     
     @FXML
     ChoiceBox Location;
@@ -95,7 +95,7 @@ public class EmployeePageController implements Initializable {
 
     @FXML
     private void handleEdit(ActionEvent event) throws IOException{
-        Selected = CarTable.getSelectionModel().getSelectedItem();
+        Car Selected = CarTable.getSelectionModel().getSelectedItem();
         
         FXMLLoader Loader = new FXMLLoader();
         Loader.setLocation(getClass().getResource("EditCarPage.fxml"));
@@ -105,10 +105,13 @@ public class EmployeePageController implements Initializable {
             System.err.println(ex);
         }
         EditCarPageController editPage = Loader.getController();
-        editPage.setCar(Selected);
+        editPage.setCar(Selected.getVin(), Selected.getCondition(), Selected.getStyle(), Selected.getMake(), Selected.getModel(), Selected.getYear(), Selected.getColor(), Selected.getPrice());
+        //editPage.setCar("3234", "dkfjds", "dlkfjs", "dklfjs", "dkljfs", "Dlfjsdf", "sdlkfjd", "aldkfj");
+        
         
         Parent p = Loader.getRoot();
-        Stage stage = new Stage();
+        Node node=(Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(new Scene(p));
         stage.show();
     }
