@@ -70,7 +70,7 @@ public class UserPageController implements Initializable {
             ResultSet rs = stmt.executeQuery("SELECT Year, Make, Model, Price, Color, Style, CarCondition"
                                             + " FROM AvailCars "
                                             + "WHERE StoreID = " + stores.get(location) + " && Year >= " + year + " && Price <= " + price + ";");            
-            
+        
             while (rs.next()){
                 //YearCol.setCellFactory(rs.getString(1));
                 //query = new CarSearch(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));

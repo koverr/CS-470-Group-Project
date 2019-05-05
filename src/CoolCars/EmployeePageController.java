@@ -27,11 +27,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * @author mytar
  */
 public class EmployeePageController implements Initializable {
+    
+    //Database connection
     SQLConnection sqlconn = new SQLConnection();
     Connection conn = sqlconn.connect();
     Statement stmt = sqlconn.getStatement();
-    HashMap<String, Integer> stores = new HashMap<>();
-
+    
+    //Stores the location name, storeID
+    HashMap<String, Integer> locationData = new HashMap<>();
+    
+    //Stores all the cars and their data at a given location
+    final ObservableList<Car> localCarData = FXCollections.observableArrayList();
     
     @FXML
     ChoiceBox Location;
@@ -45,15 +51,28 @@ public class EmployeePageController implements Initializable {
        
     @FXML
     private void listByLocation(ActionEvent event) throws IOException{
+        
+        //Grabbing the information from the ChoiceBox
         String location = (String) Location.getValue();
-        System.out.println(location);
-        CarSearch query;
+        
         
         try{
-            ResultSet rs = stmt.executeQuery("SELECT Vin, CarCondition, Style, Make, Model Price"
-            + " FROM Cars "
-            + " Where StoreID = " + stores.get(location) + ";");
-            //System.out.println("I was clicked");
+            
+            localCarData.clear();
+            
+            ResultSet rs = stmt.executeQuery("SELECT Vin, CarCondition, Style, Make, Model, Year, Color, Price"
+            + " FROM Cars WHERE StoreID = " + locationData.get(location) + ";");
+            
+            //Pass in query results to ObservableList
+            while(rs.next()){
+                localCarData.add(new Car(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
+            }
+            
+            //Update the table with the new data
+            CarTable.setItems(localCarData);
+            
+         
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -63,20 +82,21 @@ public class EmployeePageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try{
+            
+            //Populate ChoiceBox with locations
             ResultSet rs = stmt.executeQuery("SELECT Address FROM Location;");
             int i = 1;
             while(rs.next()){
                 Location.getItems().add(rs.getString(1));
-                stores.put(rs.getString(1), i++);
+                locationData.put(rs.getString(1), i++);
             }
+           
         } catch (SQLException e) {
             System.out.println(e);
         }
         
-        final ObservableList<Car> data = FXCollections.observableArrayList(
-                new Car("1234", "-1", "SUV", "Nissan", "Maxima", "2008", "Maroon", "50")
-        );
         
+        //Map Car Model Class to TableView columns
         VINCol.setCellValueFactory( new PropertyValueFactory<Car,String>("Vin"));
         ConditionCol.setCellValueFactory( new PropertyValueFactory<Car,String>("Condition"));
         StyleCol.setCellValueFactory( new PropertyValueFactory<Car,String>("Style"));
@@ -86,7 +106,8 @@ public class EmployeePageController implements Initializable {
         ColorCol.setCellValueFactory( new PropertyValueFactory<Car,String>("Color"));
         PriceCol.setCellValueFactory( new PropertyValueFactory<Car,String>("Price"));
         
-        CarTable.setItems(data);
+        
+        CarTable.setItems(localCarData);
     }    
     
 }
