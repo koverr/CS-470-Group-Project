@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="436.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CoolCars.EmployeePageController">
+<AnchorPane id="AnchorPane" prefHeight="436.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CoolCars.EmployeePageController">
    <children>
       <ChoiceBox id="Location" fx:id="Location" layoutX="198.0" layoutY="60.0" onAction="#listByLocation" prefHeight="27.0" prefWidth="275.0" />
       <Label layoutX="312.0" layoutY="26.0" text="Location" />
@@ -22,7 +23,7 @@
             <TableColumn id="PriceCol" fx:id="PriceCol" prefWidth="84.0" text="Price" />
         </columns>
       </TableView>
-      <Button id="AddButton" fx:id="AddButton" layoutX="169.0" layoutY="364.0" mnemonicParsing="false" text="Add Car" />
+      <Button id="AddButton" fx:id="AddButton" layoutX="169.0" layoutY="364.0" mnemonicParsing="false" onAction="#handleAddCar" text="Add Car" />
       <Button id="EditButton" fx:id="EditButton" layoutX="306.0" layoutY="364.0" mnemonicParsing="false" text="Edit Car" />
       <Button id="DeleteButton" fx:id="DeleteButton" layoutX="437.0" layoutY="364.0" mnemonicParsing="false" text="Delete Car" />
    </children>

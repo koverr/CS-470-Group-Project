@@ -85,6 +85,7 @@ public class UserPageController implements Initializable {
     private void handleExit(ActionEvent event) throws IOException{
         Node node=(Node) event.getSource();
         Stage stage=(Stage) node.getScene().getWindow();
+        System.out.println("YOYOYOYOYO");
         Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));/* Exception */
         Scene scene = new Scene(root);
         stage.setScene(scene);
