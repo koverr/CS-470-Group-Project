@@ -102,6 +102,7 @@ public class EditCarPageController implements Initializable {
                 StoreID.getItems().add(rs.getString(1));
             }
             Address.textProperty().bind(StoreID.getSelectionModel().selectedItemProperty());
+            StoreID.setValue("1");
             
             this.VIN.setText(vin);
             this.Condition.getItems().addAll("New", "Fair", "Used", "Unavailable");
