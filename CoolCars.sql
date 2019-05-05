@@ -25,6 +25,32 @@ CREATE PROCEDURE employee_login(IN eid INT,
 BEGIN
     SELECT EmployeeID FROM Employee WHERE EmployeeID = eid AND Password = p;
 END //
+
+CREATE PROCEDURE add_car(IN vinJ INT, IN storeIDJ INT,
+                        IN conditionJ INT, IN styleJ VARCHAR(15),
+                        IN makeJ VARCHAR(15), IN modelJ VARCHAR(15),
+                        IN yearJ INT, IN colorJ VARCHAR(15),
+                        IN priceJ INT)
+BEGIN
+    INSERT INTO Cars (VIN, StoreID, CarCondition, Style,
+                      Make, Model, Year, Color, Price)
+                VALUES (vinJ, storeIDJ, conditionJ, styleJ, makeJ,
+                        modelJ, yearJ, colorJ, priceJ);
+end //
+
+
+CREATE PROCEDURE edit_car(IN vinJ INT, IN storeIDJ INT,
+                          IN conditionJ INT, IN colorJ VARCHAR(15),
+                          IN priceJ INT)
+BEGIN
+    UPDATE Cars
+        SET StoreID =  storeIDJ, CarCondition = conditionJ,
+            Price = priceJ, Color = colorJ
+            WHERE VIN = vinJ;
+end //
+
+
+
 DELIMITER ;
 
 
