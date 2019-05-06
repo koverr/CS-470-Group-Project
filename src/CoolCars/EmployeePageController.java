@@ -54,7 +54,7 @@ public class EmployeePageController implements Initializable {
     @FXML
     TableColumn VINCol, ConditionCol, StyleCol, MakeCol, ModelCol, YearCol, ColorCol, PriceCol;
  
-    
+    //Carries over the employee ID from the login page, allowing functionality of the RentCar page
     public void setEmployee(String EID){
         this.employee = EID;
     }
@@ -98,7 +98,7 @@ public class EmployeePageController implements Initializable {
             System.err.println(ex);
         }
         AddCarPageController addPage = Loader.getController();
-        addPage.setEmployee(employee);
+        addPage.setEmployee(employee);//keep track of employee id during the whole login session
         
         
         Parent p = Loader.getRoot();
@@ -121,7 +121,7 @@ public class EmployeePageController implements Initializable {
         }
         EditCarPageController editPage = Loader.getController();
         editPage.setCar(Selected.getVin(), Selected.getCondition(), Selected.getStyle(), Selected.getMake(), Selected.getModel(), Selected.getYear(), Selected.getColor(), Selected.getPrice());
-        editPage.setEmployee(employee);
+        editPage.setEmployee(employee);//keep track of employee id during the whole login session
         
         Parent p = Loader.getRoot();
         Node node=(Node) event.getSource();
@@ -165,14 +165,16 @@ public class EmployeePageController implements Initializable {
     }
     
     @FXML
+    //deletes the car currently selected in the table view
     private void handleDeleteCar(ActionEvent event) throws IOException{
         Car Selected = CarTable.getSelectionModel().getSelectedItem();
         try {
+            //stored procedure not needed since SQL injection not possible
             stmt.executeUpdate("DELETE FROM Cars WHERE VIN = " + Selected.getVin() + ";");
         } catch (SQLException e){
             System.err.println(e);
         }
-        this.listByLocation(event);
+        this.listByLocation(event);//update the table view so the deleted car is no longer shown
         
     }
     
