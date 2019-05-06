@@ -13,7 +13,7 @@
       <TextField fx:id="CustomerIDForm" layoutX="226.0" layoutY="150.0" />
       <TextField fx:id="DurationForm" layoutX="226.0" layoutY="193.0" />
       <Button fx:id="CancelButton" layoutX="200.0" layoutY="293.0" mnemonicParsing="false" text="Cancel" />
-      <Button layoutX="349.0" layoutY="293.0" mnemonicParsing="false" text="Cofirm" />
+      <Button fx:id="ConfirmButton" layoutX="349.0" layoutY="293.0" mnemonicParsing="false" text="Cofirm" />
       <Label layoutX="226.0" layoutY="133.0" text="Customer ID" />
       <Label layoutX="226.0" layoutY="175.0" text="Duration (Days)" />
       <Label layoutX="187.0" layoutY="90.0" text="Make:" />
