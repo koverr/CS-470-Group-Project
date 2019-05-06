@@ -94,7 +94,11 @@ public class EmployeePageController implements Initializable {
         } catch (IOException ex){
             System.err.println(ex);
         }
+        
+        //Place Add Car controller in an object
         AddCarPageController addPage = Loader.getController();
+        
+        //Pass in employee information to the next page
         addPage.setEmployee(employee);//keep track of employee id during the whole login session
         
         //Display new page
@@ -107,8 +111,11 @@ public class EmployeePageController implements Initializable {
 
     @FXML
     private void handleEdit(ActionEvent event) throws IOException{
+        
+        //Selected keeps track of all the information in the selected row
         Car Selected = CarTable.getSelectionModel().getSelectedItem();
         
+        //Load edit car page
         FXMLLoader Loader = new FXMLLoader();
         Loader.setLocation(getClass().getResource("EditCarPage.fxml"));
         try{
@@ -116,6 +123,8 @@ public class EmployeePageController implements Initializable {
         } catch (IOException ex){
             System.err.println(ex);
         }
+        
+        //Grab EditCarPage Controller as object
         EditCarPageController editPage = Loader.getController();
         editPage.setCar(Selected.getVin(), Selected.getCondition(), Selected.getStyle(), Selected.getMake(), Selected.getModel(), Selected.getYear(), Selected.getColor(), Selected.getPrice());
         editPage.setEmployee(employee);//keep track of employee id during the whole login session
@@ -138,6 +147,7 @@ public class EmployeePageController implements Initializable {
         stage.show();
     }
     
+    //Similar to Edit and Add car pages
     @FXML
     private void handleRent(ActionEvent event) throws IOException{
         Car Selected = CarTable.getSelectionModel().getSelectedItem();
