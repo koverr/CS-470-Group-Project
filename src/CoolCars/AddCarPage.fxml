@@ -21,7 +21,7 @@
       <TextField id="Price" fx:id="Price" layoutX="229.0" layoutY="505.0" promptText="Enter Price" />
       <Button id="Add Car" fx:id="addCarButton" defaultButton="true" layoutX="155.0" layoutY="567.0" mnemonicParsing="false" onAction="#handleAddCar" text="Add Car" />
       <Label layoutX="101.0" layoutY="71.0" text="Store ID" />
-      <ChoiceBox fx:id="StoreID" layoutX="158.0" layoutY="60.0" prefHeight="39.0" prefWidth="53.0" />
+      <ChoiceBox fx:id="StoreID" layoutX="158.0" layoutY="60.0" onAction="#updateAddress" prefHeight="39.0" prefWidth="53.0" />
       <Button id="Exit" fx:id="Exit" layoutX="309.0" layoutY="567.0" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
       <TextField id="Address" fx:id="Address" disable="true" layoutX="229.0" layoutY="67.0" prefHeight="26.0" prefWidth="224.0" />
       <TextField id="Color" fx:id="Color" layoutX="229.0" layoutY="455.0" promptText="Enter Color" />

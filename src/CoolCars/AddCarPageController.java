@@ -55,8 +55,8 @@ public class AddCarPageController implements Initializable {
     private void handleAddCar(ActionEvent event) throws IOException {
 
         //sorry not sorry
-        int theVin = -1;
-        int thePrice = -1;
+        int theVin;
+        int thePrice;
         String stringStoreID = (String) StoreID.getValue();
         String stringYear = (String) Year.getText();
         String theStyle = (String) Style.getText();
@@ -123,7 +123,9 @@ public class AddCarPageController implements Initializable {
         stage.show();
     }
 
-
+    public void updateAddress(ActionEvent event) throws IOException{
+        Address.setText(stores.get(StoreID.getValue()));
+    }
 
 
     @Override
@@ -157,7 +159,6 @@ public class AddCarPageController implements Initializable {
                 stores.put(rs.getString(1), rs.getString(2));
                 StoreID.getItems().add(rs.getString(1));
             }
-            Address.textProperty().bind(StoreID.getSelectionModel().selectedItemProperty());
             StoreID.setValue("1");
 
         }  catch (SQLException e) {
