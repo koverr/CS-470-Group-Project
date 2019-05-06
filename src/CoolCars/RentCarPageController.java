@@ -7,6 +7,7 @@ package CoolCars;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,7 +33,8 @@ import javafx.stage.Stage;
 public class RentCarPageController implements Initializable {
     SQLConnection sqlconn = new SQLConnection();
     Connection conn = sqlconn.connect();
-    Statement stmt = sqlconn.getStatement();
+    CallableStatement rentStmt = sqlconn.procedure("employee_rent_car(?,?,?,?)");
+    Statement normStmt = sqlconn.getStatement();
     
     @FXML
     TextField CustomerIDForm, DurationForm;
@@ -56,14 +58,30 @@ public class RentCarPageController implements Initializable {
     
     @FXML
     private void handleConfirm(ActionEvent event) throws IOException{
-        //TODO
+        String theUsername = CustomerIDForm.getText();
+        String stringVin = VINField.getText();
+        String duration = DurationForm.getText();
+        int theVin = Integer.parseInt(stringVin);
+        int employeeID= -5;
+
+        try{
+            rentStmt.setInt(1, employeeID);
+            rentStmt.setString(2,theUsername);
+            rentStmt.setInt(3, theVin);
+            rentStmt.setString(4, duration);
+            rentStmt.execute();
+        }
+        catch(Exception e)
+        {
+            System.err.println(e);
+        }
     }
     
     
     public void setCar(String vin, String condition, String style, String make, String model, String year, String color, String price){
         
         try {
-            ResultSet rs = stmt.executeQuery("SELECT DISTINCT Cars.StoreID, Address FROM Cars JOIN Location ON Cars.StoreID = Location.StoreID;");
+            ResultSet rs = normStmt.executeQuery("SELECT DISTINCT Cars.StoreID, Address FROM Cars JOIN Location ON Cars.StoreID = Location.StoreID;");
             while (rs.next()) {
                 //stores.put(rs.getString(1), rs.getString(2));
                 //StoreID.getItems().add(rs.getString(1));

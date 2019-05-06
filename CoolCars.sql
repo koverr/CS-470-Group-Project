@@ -57,6 +57,18 @@ BEGIN
             WHERE VIN = vinJ;
 end //
 
+CREATE PROCEDURE employee_rent_car(IN employeeIDJ INT, IN usernameJ VARCHAR(30),
+                                    IN vinJ INT, in durationJ VARCHAR(50))
+BEGIN
+    INSERT INTO Rents (VIN, Username, Duration)
+    VALUES (vinJ,usernameJ, durationJ);
+    INSERT INTO Helped_By (EmployeeID, Username)
+    VALUES (employeeIDJ, usernameJ);
+    UPDATE Cars
+        SET CarCondition = -1
+    WHERE VIN = vinj;
+end //
+
 
 
 DELIMITER ;
@@ -115,7 +127,7 @@ CREATE TABLE Rents (
     CONSTRAINT FK_User_Username FOREIGN KEY (Username) REFERENCES User(Username));
 
 CREATE TABLE Helped_By (
-	Ticket INT NOT NULL,
+	Ticket INT NOT NULL AUTO_INCREMENT,
     EmployeeID INT NOT NULL,
     Username VARCHAR (30) NOT NULL,
     PRIMARY KEY (Ticket),
