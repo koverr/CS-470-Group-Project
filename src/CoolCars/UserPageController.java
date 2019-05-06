@@ -34,10 +34,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * @author mytar
  */
 public class UserPageController implements Initializable {
+
+    //setting up the connection to the SQL server
     SQLConnection sqlconn = new SQLConnection();
     Connection conn = sqlconn.connect();
-    CallableStatement stmt = sqlconn.procedure("user_car_search(?,?,?)");
-    HashMap<String, Integer> stores = new HashMap<>();
+    CallableStatement stmt = sqlconn.procedure("user_car_search(?,?,?)");//stored procedure for looking up cars, prevents SQL injection
+    HashMap<String, Integer> stores = new HashMap<>();//HashMap for linking the storeID to the address of the location
     final ObservableList<Car> search = FXCollections.observableArrayList();
     
     @FXML

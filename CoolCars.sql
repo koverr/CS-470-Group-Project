@@ -119,10 +119,11 @@ CREATE TABLE User (
     PRIMARY KEY (Username));
 
 CREATE TABLE Rents (
+    TransactionID INT NOT NULL AUTO_INCREMENT,
 	VIN INT NOT NULL,
     Username VARCHAR (30) NOT NULL,
     Duration VARCHAR (50) NOT NULL,
-    PRIMARY KEY (VIN, Username),
+    PRIMARY KEY (TransactionID),
     CONSTRAINT FK_Cars_VIN FOREIGN KEY (VIN) REFERENCES Cars(VIN),
     CONSTRAINT FK_User_Username FOREIGN KEY (Username) REFERENCES User(Username));
 

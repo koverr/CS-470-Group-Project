@@ -1,5 +1,6 @@
 package CoolCars;
 
+import javafx.scene.image.Image;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +17,8 @@ public class CoolCars extends Application {
     public void start(Stage stage) throws Exception {
         window = stage;
         window.setTitle("Cool Cars LLC");
+        Image image = new Image("CoolCars/CoolCarsLogo.png");
+        window.getIcons().add(image);
         Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
         
         Scene scene = new Scene(root);
