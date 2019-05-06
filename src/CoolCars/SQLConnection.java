@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package CoolCars;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -13,10 +8,12 @@ public class SQLConnection {
     private ResourceBundle reader = null;
     private static String FILENAME;
     
+    //Points to a config file outside of code
     public SQLConnection(){
         FILENAME = "resources/dbconfig";
     }
 
+    //Connects to the database without having the plaintext user/pass/connection string in the code
     public Connection connect(){
         try {
             reader = ResourceBundle.getBundle(FILENAME);
