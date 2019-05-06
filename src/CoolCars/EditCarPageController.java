@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package CoolCars;
 
 import java.io.IOException;
@@ -28,13 +23,20 @@ import javafx.stage.Stage;
 
 public class EditCarPageController implements Initializable {
     
+    //Establish connection to database
     SQLConnection sqlconn = new SQLConnection();
     Connection conn = sqlconn.connect();
     Statement normS = sqlconn.getStatement();
+    
+    //Get stored procedure
     CallableStatement editCar = sqlconn.procedure("edit_car(?,?,?,?,?)");
+    
+    //TODO: Remove? Fix?
+    //Stores LocationID as the key and the Location Address as the value. Or at least it should
     HashMap<String, String> stores = new HashMap<>();
     String empID;
     
+    //Reference FXML elements
     @FXML
     ChoiceBox Condition, StoreID;
 
@@ -45,8 +47,11 @@ public class EditCarPageController implements Initializable {
         this.empID = id;
     }
     
+    //EditCar Button
     @FXML
     private void handleEditCar(ActionEvent event) throws IOException{
+        
+        //Grab input from JavaFX scene
         String stringVin = VIN.getText();
         String stringStoreID = (String) StoreID.getValue();
         int theVin = Integer.parseInt(stringVin);
@@ -54,6 +59,8 @@ public class EditCarPageController implements Initializable {
         String theColor = Color.getText();
         int thePrice = Integer.parseInt(Price.getText());
         String cond = (String) Condition.getValue();
+        
+        //Convert car condition back into an integer for the database
         int theCondition;
         switch (cond) {
             case "New":
@@ -69,7 +76,8 @@ public class EditCarPageController implements Initializable {
                 theCondition = -1;
                 break;
         }
-
+        
+        //Alter Car value in the database
         try{
             editCar.setInt(1, theVin);
             editCar.setInt(2, theStoreID);
@@ -86,7 +94,7 @@ public class EditCarPageController implements Initializable {
         
     }
     
-    
+    //Exit button
     @FXML
     private void handleExit(ActionEvent event) throws IOException{
         FXMLLoader Loader = new FXMLLoader();
@@ -106,6 +114,11 @@ public class EditCarPageController implements Initializable {
         stage.show();
     }
     
+    public void updateAddress(ActionEvent event) throws IOException{
+        Address.setText(stores.get(StoreID.getValue()));
+    }
+    
+    //Function used to transfer selected table data to the EditCar page
     public void setCar(String vin, String condition, String style, String make, String model, String year, String color, String price){
         
         try {
@@ -114,7 +127,7 @@ public class EditCarPageController implements Initializable {
                 stores.put(rs.getString(1), rs.getString(2));
                 StoreID.getItems().add(rs.getString(1));
             }
-            Address.textProperty().bind(StoreID.getSelectionModel().selectedItemProperty());
+            //Address.textProperty().bind(StoreID.getSelectionModel().selectedItemProperty());
             StoreID.setValue("1");
             
             this.VIN.setText(vin);

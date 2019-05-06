@@ -1,10 +1,8 @@
+/*Car object model for JavaFX*/
+
 package CoolCars;
 import javafx.beans.property.SimpleStringProperty;
 
-/**
- *
- * @author mytar
- */
 public class Car {
     private final SimpleStringProperty Vin;
     private final SimpleStringProperty Condition;
@@ -15,10 +13,13 @@ public class Car {
     private final SimpleStringProperty Color;
     private final SimpleStringProperty Price;
     
+    //Constructor with condition
     public Car(String condition, String style, String make, 
             String model, String year, String color, String price){
         this.Vin = new SimpleStringProperty();
         int conditioni = Integer.parseInt(condition);
+        
+        //Convert the integer values in the database to Condition eqivalents
         switch (conditioni) {
             case 1:
                 Condition = new SimpleStringProperty("New");
@@ -41,6 +42,7 @@ public class Car {
         this.Price = new SimpleStringProperty(price);
     }
     
+    //Constructor
     public Car(String vin, String condition, String style, String make, 
             String model, String year, String color, String price){
         this.Vin = new SimpleStringProperty(vin);
