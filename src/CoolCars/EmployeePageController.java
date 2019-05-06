@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,6 +38,8 @@ public class EmployeePageController implements Initializable {
     Connection conn = sqlconn.connect();
     Statement stmt = sqlconn.getStatement();
     
+    String employee;
+    
     //Stores the location name, storeID
     HashMap<String, Integer> locationData = new HashMap<>();
     
@@ -52,6 +55,10 @@ public class EmployeePageController implements Initializable {
     @FXML
     TableColumn VINCol, ConditionCol, StyleCol, MakeCol, ModelCol, YearCol, ColorCol, PriceCol;
  
+    
+    public void setEmployee(String EID){
+        this.employee = EID;
+    }
        
     @FXML
     private void listByLocation(ActionEvent event) throws IOException{
@@ -137,6 +144,8 @@ public class EmployeePageController implements Initializable {
         }
         RentCarPageController rentPage = Loader.getController();
         rentPage.setCar(Selected.getVin(), Selected.getCondition(), Selected.getStyle(), Selected.getMake(), Selected.getModel(), Selected.getYear(), Selected.getColor(), Selected.getPrice());
+        rentPage.setRentInfo(employee);
+        
         
         Parent p = Loader.getRoot();
         Node node=(Node) event.getSource();

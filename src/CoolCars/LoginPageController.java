@@ -82,11 +82,20 @@ public class LoginPageController implements Initializable {
             }
             else if (r2.next()){
 
+                FXMLLoader Loader = new FXMLLoader();
+                Loader.setLocation(getClass().getResource("EmployeePage.fxml"));
+                try{
+                    Loader.load();
+                } catch (IOException ex){
+                    System.err.println(ex);
+                }
+                EmployeePageController editPage = Loader.getController();
+                editPage.setEmployee(user);
+
+                Parent p = Loader.getRoot();
                 Node node=(Node) event.getSource();
-                Stage stage=(Stage) node.getScene().getWindow();
-                Parent root = FXMLLoader.load(getClass().getResource("EmployeePage.fxml"));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
+                Stage stage = (Stage) node.getScene().getWindow();
+                stage.setScene(new Scene(p));
                 stage.show();
             }
         } catch (SQLException e){
