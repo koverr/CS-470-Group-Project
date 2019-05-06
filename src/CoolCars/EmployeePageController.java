@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package CoolCars;
 
 import java.io.IOException;
@@ -90,6 +85,8 @@ public class EmployeePageController implements Initializable {
 
     @FXML
     private void handleAddCar(ActionEvent event) throws IOException{
+        
+        //Load Add Car page
         FXMLLoader Loader = new FXMLLoader();
         Loader.setLocation(getClass().getResource("AddCarPage.fxml"));
         try{
@@ -100,7 +97,7 @@ public class EmployeePageController implements Initializable {
         AddCarPageController addPage = Loader.getController();
         addPage.setEmployee(employee);//keep track of employee id during the whole login session
         
-        
+        //Display new page
         Parent p = Loader.getRoot();
         Node node=(Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -135,7 +132,7 @@ public class EmployeePageController implements Initializable {
     private void handleExit(ActionEvent event) throws IOException{
         Node node=(Node) event.getSource();
         Stage stage=(Stage) node.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));/* Exception */
+        Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
