@@ -142,9 +142,9 @@ public class AddCarPageController implements Initializable {
             while (rs.next()) {
                 stores.put(rs.getString(1), rs.getString(2));
                 StoreID.getItems().add(rs.getString(1));
-
             }
             Address.textProperty().bind(StoreID.getSelectionModel().selectedItemProperty());
+            StoreID.setValue("1");
 
         }  catch (SQLException e) {
             System.out.println(e);
