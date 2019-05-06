@@ -153,8 +153,7 @@ VALUES
 	(9374, 1, 1, 'Sport', 'Pagani', 'Zonda HP Barchetta', 2017, 'Silver', 530);
     
 INSERT INTO User (Username, Password, Name, Age, CreditScore, License, Insurance, Balance, PhoneNumber)
-VALUES ('koverbay', aes_encrypt('pass', 'koverbay'), 'Kory Overbay', 20, 400, 3333, 3434, 0, '(816)673-8479'),
-	('user1', aes_encrypt('pass1', 'user1'), 'Bob Builder', 43, 400, 1234, 5678, 0, '(816)712-3245'),
+VALUES ('user1', aes_encrypt('pass1', 'user1'), 'Bob Builder', 43, 400, 1234, 5678, 0, '(816)712-3245'),
 	('user2', aes_encrypt('pass2', 'user2'), 'Dora Explora', 18, 200, 3245, 8573, 3000, '(281)343-2367'),
     ('user3', aes_encrypt('pass3', 'user3'), 'Jimmy Neutron', 32, 350, 2024, 3951, 0, '(382)333-5973'),
     ('user4', aes_encrypt('pass4', 'user4'), 'Fred Rogers', 51, 530, 3942, 6941, 0, '(394)359-6998'),
