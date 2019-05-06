@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.sql.*;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -169,6 +168,7 @@ public class EmployeePageController implements Initializable {
                 Location.getItems().add(rs.getString(1));
                 locationData.put(rs.getString(1), i++);
             }
+            
            
         } catch (SQLException e) {
             System.out.println(e);
