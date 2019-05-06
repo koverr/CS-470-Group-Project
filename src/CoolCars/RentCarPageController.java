@@ -36,21 +36,21 @@ public class RentCarPageController implements Initializable {
     CallableStatement rentStmt = sqlconn.procedure("employee_rent_car(?,?,?,?)");
     Statement normStmt = sqlconn.getStatement();
     String empID;
-    
+
     @FXML
     TextField CustomerIDForm, DurationForm;
-    
+
     @FXML
     Button CancelButton, ConfirmButton;
-    
+
     @FXML
     Text VINField, MakeField, ModelField, YearField;
-    
+
     public void setRentInfo(String ID){
         this.empID = ID;
     }
-    
-    
+
+
     @FXML
     private void handleCancel(ActionEvent event) throws IOException{
         FXMLLoader Loader = new FXMLLoader();
@@ -69,17 +69,17 @@ public class RentCarPageController implements Initializable {
         stage.setScene(new Scene(p));
         stage.show();
     }
-    
+
     @FXML
     private void handleConfirm(ActionEvent event) throws IOException{
         String theUsername = CustomerIDForm.getText();
         String stringVin = VINField.getText();
         String duration = DurationForm.getText();
         int theVin = Integer.parseInt(stringVin);
-        
+        int employeeID= -5;
 
         try{
-            rentStmt.setInt(1, Integer.parseInt(empID));
+            rentStmt.setInt(1, employeeID);
             rentStmt.setString(2,theUsername);
             rentStmt.setInt(3, theVin);
             rentStmt.setString(4, duration);
@@ -117,6 +117,5 @@ public class RentCarPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-    }    
-    
+    }
 }
