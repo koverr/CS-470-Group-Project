@@ -51,6 +51,7 @@ public class RentCarPageController implements Initializable {
     }
 
 
+    //Allows exit
     @FXML
     private void handleCancel(ActionEvent event) throws IOException{
         FXMLLoader Loader = new FXMLLoader();
@@ -70,6 +71,7 @@ public class RentCarPageController implements Initializable {
         stage.show();
     }
 
+    //Sets the rent value
     @FXML
     private void handleConfirm(ActionEvent event) throws IOException{
         String theUsername = CustomerIDForm.getText();
@@ -91,18 +93,11 @@ public class RentCarPageController implements Initializable {
         }
     }
     
-    
+    //Sets the car value
     public void setCar(String vin, String condition, String style, String make, String model, String year, String color, String price){
         
         try {
             ResultSet rs = normStmt.executeQuery("SELECT DISTINCT Cars.StoreID, Address FROM Cars JOIN Location ON Cars.StoreID = Location.StoreID;");
-            while (rs.next()) {
-                //stores.put(rs.getString(1), rs.getString(2));
-                //StoreID.getItems().add(rs.getString(1));
-            }
-            //Address.textProperty().bind(StoreID.getSelectionModel().selectedItemProperty());
-            //StoreID.setValue("1");
-            
             VINField.setText(vin);
             MakeField.setText(make);
             ModelField.setText(model);

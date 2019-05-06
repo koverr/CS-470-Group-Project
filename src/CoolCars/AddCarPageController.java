@@ -51,10 +51,10 @@ public class AddCarPageController implements Initializable {
         this.empID = id;
     }
     
+    // Takes in text from the Add Car page 
     @FXML
     private void handleAddCar(ActionEvent event) throws IOException {
 
-        //sorry not sorry
         int theVin;
         int thePrice;
         String stringStoreID = (String) StoreID.getValue();
@@ -104,6 +104,8 @@ public class AddCarPageController implements Initializable {
         }
     }
 
+    
+    // Allows the exiting of the Add Car page
     @FXML
     private void handleExit(ActionEvent event) throws IOException{
         FXMLLoader Loader = new FXMLLoader();
