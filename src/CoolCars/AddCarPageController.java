@@ -39,6 +39,7 @@ public class AddCarPageController implements Initializable {
     Statement normS = sqlconn.getStatement();
     CallableStatement addCar = sqlconn.procedure("add_car(?,?,?,?,?,?,?,?,?)");
     HashMap<String, String> stores = new HashMap<>();
+    String empID;
 
     @FXML
     TextField  Style, Make, Model, Year, Color, VIN, Price, Address;
@@ -46,6 +47,10 @@ public class AddCarPageController implements Initializable {
     @FXML
     ChoiceBox Condition, StoreID;
 
+    public void setEmployee(String id){
+        this.empID = id;
+    }
+    
     @FXML
     private void handleAddCar(ActionEvent event) throws IOException {
 
@@ -101,11 +106,20 @@ public class AddCarPageController implements Initializable {
 
     @FXML
     private void handleExit(ActionEvent event) throws IOException{
+        FXMLLoader Loader = new FXMLLoader();
+        Loader.setLocation(getClass().getResource("EmployeePage.fxml"));
+        try{
+            Loader.load();
+        } catch (IOException ex){
+            System.err.println(ex);
+        }
+        EmployeePageController editPage = Loader.getController();
+        editPage.setEmployee(empID);
+ 
+        Parent p = Loader.getRoot();
         Node node=(Node) event.getSource();
-        Stage stage=(Stage) node.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("EmployeePage.fxml"));/* Exception */
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(p));
         stage.show();
     }
 

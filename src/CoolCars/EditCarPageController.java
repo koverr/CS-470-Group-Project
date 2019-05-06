@@ -33,14 +33,17 @@ public class EditCarPageController implements Initializable {
     Statement normS = sqlconn.getStatement();
     CallableStatement editCar = sqlconn.procedure("edit_car(?,?,?,?,?)");
     HashMap<String, String> stores = new HashMap<>();
-
+    String empID;
+    
     @FXML
     ChoiceBox Condition, StoreID;
 
     @FXML
     TextField VIN, Style, Make, Model, Year, Color, Price, Address;
     
-    
+    public void setEmployee(String id){
+        this.empID = id;
+    }
     
     @FXML
     private void handleEditCar(ActionEvent event) throws IOException{
@@ -81,22 +84,25 @@ public class EditCarPageController implements Initializable {
             System.err.println(e);
         }
         
-        Node node=(Node) event.getSource();
-        Stage stage=(Stage) node.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("EmployeePage.fxml"));/* Exception */
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
     
     
     @FXML
     private void handleExit(ActionEvent event) throws IOException{
+        FXMLLoader Loader = new FXMLLoader();
+        Loader.setLocation(getClass().getResource("EmployeePage.fxml"));
+        try{
+            Loader.load();
+        } catch (IOException ex){
+            System.err.println(ex);
+        }
+        EmployeePageController editPage = Loader.getController();
+        editPage.setEmployee(empID);
+ 
+        Parent p = Loader.getRoot();
         Node node=(Node) event.getSource();
-        Stage stage=(Stage) node.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("EmployeePage.fxml"));/* Exception */
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(p));
         stage.show();
     }
     
