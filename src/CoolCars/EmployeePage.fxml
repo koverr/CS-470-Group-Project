@@ -25,7 +25,7 @@
       </TableView>
       <Button id="AddButton" fx:id="AddButton" layoutX="62.0" layoutY="364.0" mnemonicParsing="false" onAction="#handleAddCar" text="Add Car" />
       <Button id="EditButton" fx:id="EditButton" layoutX="169.0" layoutY="364.0" mnemonicParsing="false" onAction="#handleEdit" text="Edit Car" />
-      <Button id="DeleteButton" fx:id="DeleteButton" layoutX="285.0" layoutY="364.0" mnemonicParsing="false" text="Delete Car" />
+      <Button id="DeleteButton" fx:id="DeleteButton" layoutX="285.0" layoutY="364.0" mnemonicParsing="false" onAction="#handleDeleteCar" text="Delete Car" />
       <Button id="Exit" fx:id="Exit" layoutX="574.0" layoutY="364.0" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
       <Button id="RentButton" fx:id="RentButton" layoutX="421.0" layoutY="364.0" mnemonicParsing="false" text="Rent Car" />
    </children>
