@@ -17,6 +17,7 @@ public class CoolCars extends Application {
     public void start(Stage stage) throws Exception {
         window = stage;
         window.setTitle("Cool Cars LLC");
+        //Sets icon
         Image image = new Image("CoolCars/CoolCarsLogo.png");
         window.getIcons().add(image);
         Parent root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
