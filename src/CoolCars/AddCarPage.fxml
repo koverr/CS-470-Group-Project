@@ -6,9 +6,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="653.0" prefWidth="542.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CoolCars.AddCarPageController">
+<AnchorPane prefHeight="653.0" prefWidth="542.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CoolCars.AddCarPageController">
    <children>
-      <TextField fx:id="VIN" layoutX="229.0" layoutY="118.0" promptText="VIN" />
+      <TextField fx:id="VIN" layoutX="229.0" layoutY="118.0" promptText="Enter VIN" />
       <ChoiceBox fx:id="Condition" layoutX="229.0" layoutY="176.0" prefHeight="39.0" prefWidth="224.0" />
       <Label layoutX="90.0" layoutY="182.0" text="Condition" />
       <Label layoutX="111.0" layoutY="241.0" text="Style" />
@@ -18,16 +18,16 @@
       <Label layoutX="108.0" layoutY="459.0" text="Color" />
       <Label layoutX="110.0" layoutY="511.0" text="Price" />
       <Label layoutX="115.0" layoutY="124.0" text="VIN" />
-      <ChoiceBox fx:id="Style" layoutX="229.0" layoutY="235.0" prefHeight="39.0" prefWidth="224.0" />
-      <ChoiceBox fx:id="Make" layoutX="229.0" layoutY="289.0" prefHeight="39.0" prefWidth="224.0" />
-      <ChoiceBox fx:id="Model" layoutX="229.0" layoutY="344.0" prefHeight="39.0" prefWidth="224.0" />
-      <ChoiceBox fx:id="Year" layoutX="229.0" layoutY="403.0" prefHeight="39.0" prefWidth="224.0" />
-      <ChoiceBox fx:id="Color" layoutX="229.0" layoutY="453.0" prefHeight="39.0" prefWidth="224.0" />
-      <TextField fx:id="Price" layoutX="229.0" layoutY="505.0" promptText="Price" />
-      <Button fx:id="addCarButton" defaultButton="true" layoutX="155.0" layoutY="567.0" mnemonicParsing="false" onAction="#handleAddCar" text="Add Car" />
+      <TextField id="Price" fx:id="Price" layoutX="229.0" layoutY="505.0" promptText="Enter Price" />
+      <Button id="Add Car" fx:id="addCarButton" defaultButton="true" layoutX="155.0" layoutY="567.0" mnemonicParsing="false" onAction="#handleAddCar" text="Add Car" />
       <Label layoutX="101.0" layoutY="71.0" text="Store ID" />
       <ChoiceBox fx:id="StoreID" layoutX="158.0" layoutY="60.0" prefHeight="39.0" prefWidth="53.0" />
       <Button id="Exit" fx:id="Exit" layoutX="309.0" layoutY="567.0" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-      <TextField id="Address" fx:id="Address" disable="true" editable="false" layoutX="229.0" layoutY="67.0" prefHeight="26.0" prefWidth="224.0" />
+      <TextField id="Address" fx:id="Address" disable="true" layoutX="229.0" layoutY="67.0" prefHeight="26.0" prefWidth="224.0" />
+      <TextField id="Color" fx:id="Color" layoutX="229.0" layoutY="455.0" promptText="Enter Color" />
+      <TextField id="Year" fx:id="Year" layoutX="229.0" layoutY="405.0" promptText="Enter year" />
+      <TextField fx:id="Model" layoutX="229.0" layoutY="346.0" promptText="Enter Model" />
+      <TextField id="Make" fx:id="Make" layoutX="229.0" layoutY="291.0" promptText="Enter Make" />
+      <TextField id="Style" fx:id="Style" layoutX="229.0" layoutY="237.0" promptText="Enter Style" />
    </children>
-</AnchorPane>
+ </AnchorPane>

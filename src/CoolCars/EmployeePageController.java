@@ -106,9 +106,7 @@ public class EmployeePageController implements Initializable {
         }
         EditCarPageController editPage = Loader.getController();
         editPage.setCar(Selected.getVin(), Selected.getCondition(), Selected.getStyle(), Selected.getMake(), Selected.getModel(), Selected.getYear(), Selected.getColor(), Selected.getPrice());
-        //editPage.setCar("3234", "dkfjds", "dlkfjs", "dklfjs", "dkljfs", "Dlfjsdf", "sdlkfjd", "aldkfj");
-        
-        
+
         Parent p = Loader.getRoot();
         Node node=(Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -146,6 +144,18 @@ public class EmployeePageController implements Initializable {
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setScene(new Scene(p));
         stage.show();
+    }
+    
+    @FXML
+    private void handleDeleteCar(ActionEvent event) throws IOException{
+        Car Selected = CarTable.getSelectionModel().getSelectedItem();
+        try {
+            stmt.executeUpdate("DELETE FROM Cars WHERE VIN = " + Selected.getVin() + ";");
+        } catch (SQLException e){
+            System.err.println(e);
+        }
+        this.listByLocation(event);
+        
     }
     
     @Override

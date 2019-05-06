@@ -41,10 +41,10 @@ public class AddCarPageController implements Initializable {
     HashMap<String, String> stores = new HashMap<>();
 
     @FXML
-    ChoiceBox Condition, Style, Make, Model, Year, Color, StoreID;
+    TextField  Style, Make, Model, Year, Color, VIN, Price, Address;
 
     @FXML
-    TextField VIN, Price, Address;
+    ChoiceBox Condition, StoreID;
 
     @FXML
     private void handleAddCar(ActionEvent event) throws IOException {
@@ -53,11 +53,11 @@ public class AddCarPageController implements Initializable {
         int theVin = -1;
         int thePrice = -1;
         String stringStoreID = (String) StoreID.getValue();
-        String stringYear = (String) Year.getValue();
-        String theStyle = (String) Style.getValue();
-        String theMake = (String) Make.getValue();
-        String theModel = (String) Model.getValue();
-        String theColor = (String) Color.getValue();
+        String stringYear = (String) Year.getText();
+        String theStyle = (String) Style.getText();
+        String theMake = (String) Make.getText();
+        String theModel = (String) Model.getText();
+        String theColor = (String) Color.getText();
         String stringVin = VIN.getText();
         String stringPrice = Price.getText();
         theVin = Integer.parseInt(stringVin);
@@ -138,39 +138,13 @@ public class AddCarPageController implements Initializable {
             }
             Condition.setValue("Used");
 
-            rs = normS.executeQuery("SELECT DISTINCT Year FROM Cars ORDER BY Year DESC;");
-            while (rs.next()) {
-                Year.getItems().add(rs.getString(1));
-            }
-            Year.setValue("2020");
-
-            rs = normS.executeQuery("SELECT DISTINCT Style FROM Cars;");
-            while (rs.next()) {
-                Style.getItems().add(rs.getString(1));
-            }
-
-            rs = normS.executeQuery("SELECT DISTINCT Make FROM Cars;");
-            while (rs.next()) {
-                Make.getItems().add(rs.getString(1));
-            }
-
-            rs = normS.executeQuery("SELECT DISTINCT Model FROM Cars;");
-            while (rs.next()) {
-                Model.getItems().add(rs.getString(1));
-            }
-
-            rs = normS.executeQuery("SELECT DISTINCT Color FROM Cars;");
-            while (rs.next()) {
-                Color.getItems().add(rs.getString(1));
-            }
-
             rs = normS.executeQuery("SELECT DISTINCT Cars.StoreID, Address FROM Cars JOIN Location ON Cars.StoreID = Location.StoreID;");
             while (rs.next()) {
                 stores.put(rs.getString(1), rs.getString(2));
                 StoreID.getItems().add(rs.getString(1));
-
             }
             Address.textProperty().bind(StoreID.getSelectionModel().selectedItemProperty());
+            StoreID.setValue("1");
 
         }  catch (SQLException e) {
             System.out.println(e);
