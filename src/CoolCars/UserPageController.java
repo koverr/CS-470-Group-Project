@@ -54,15 +54,12 @@ public class UserPageController implements Initializable {
     @FXML
     TableColumn YearCol, MakeCol, ModelCol, PriceCol, ColorCol, StyleCol, ConditionCol;
     
+    //Takes in search criteria and returns a view of the list of cars to table view
     @FXML
     private void handleSearch(ActionEvent event) throws IOException {
         String location = (String) Location.getValue();
         String year = (String) Year.getValue();
         String price = Price.getText();
-
-
-
-       
         try {
             stmt.setInt(1, stores.get(location));
             stmt.setInt(2, Integer.parseInt(year));
@@ -88,6 +85,7 @@ public class UserPageController implements Initializable {
         }
     }
     
+    //Allows exit to the back
     @FXML
     private void handleExit(ActionEvent event) throws IOException{
         Node node=(Node) event.getSource();

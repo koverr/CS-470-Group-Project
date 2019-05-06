@@ -25,10 +25,11 @@ import javafx.stage.Stage;
  * @author koryo
  */
 public class LoginPageController implements Initializable {
+    
+    //Establishes connection to the database and defines stored procedures
     SQLConnection sqlconn = new SQLConnection();
     Connection conn = sqlconn.connect();
     CallableStatement stmt = sqlconn.procedure("user_login(?,?)");
-    
     CallableStatement stmt2 = sqlconn.procedure("employee_login(?,?)");
     
     @FXML
@@ -42,10 +43,12 @@ public class LoginPageController implements Initializable {
     
     @FXML
     private void handleLogin(ActionEvent event) throws IOException {
+        //Stores Username and Password fields
         String user = Username.getText();
         String pass = Password.getText();
         
         try {
+            //Sets up variables for stored procedure queries
             stmt.setString(1, user);
             stmt.setString(2,pass);
 
@@ -67,10 +70,13 @@ public class LoginPageController implements Initializable {
             ResultSet r1 = stmt.getResultSet();
             ResultSet r2 = stmt2.getResultSet();
 
+            
+            //Checks that login matches a user
             if ((!r1.next()) && (!r2.next())){
                 Status.setText("Incorrect Username or Password.");    
                 Password.clear();
             }
+            //Checks if login was a user and if so moves to user page
             r1.beforeFirst();r2.beforeFirst();
             if (r1.next()){
                 Node node=(Node) event.getSource();
@@ -80,8 +86,9 @@ public class LoginPageController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
             }
+            //Checks if login was a Employee
             else if (r2.next()){
-
+                //Takes the employeeID if matched into the employee page
                 FXMLLoader Loader = new FXMLLoader();
                 Loader.setLocation(getClass().getResource("EmployeePage.fxml"));
                 try{
