@@ -8,6 +8,8 @@ package CoolCars;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -56,6 +58,29 @@ public class RentCarPageController implements Initializable {
     private void handleConfirm(ActionEvent event) throws IOException{
         //TODO
     }
+    
+    
+    public void setCar(String vin, String condition, String style, String make, String model, String year, String color, String price){
+        
+        try {
+            ResultSet rs = stmt.executeQuery("SELECT DISTINCT Cars.StoreID, Address FROM Cars JOIN Location ON Cars.StoreID = Location.StoreID;");
+            while (rs.next()) {
+                //stores.put(rs.getString(1), rs.getString(2));
+                //StoreID.getItems().add(rs.getString(1));
+            }
+            //Address.textProperty().bind(StoreID.getSelectionModel().selectedItemProperty());
+            //StoreID.setValue("1");
+            
+            VINField.setText(vin);
+            MakeField.setText(make);
+            ModelField.setText(model);
+            YearField.setText(year);
+            
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+    }
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

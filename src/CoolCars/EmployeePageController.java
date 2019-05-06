@@ -129,7 +129,23 @@ public class EmployeePageController implements Initializable {
     
     @FXML
     private void handleRent(ActionEvent event) throws IOException{
-        //TODO
+        Car Selected = CarTable.getSelectionModel().getSelectedItem();
+        
+        FXMLLoader Loader = new FXMLLoader();
+        Loader.setLocation(getClass().getResource("RentCarPage.fxml"));
+        try{
+            Loader.load();
+        } catch (IOException ex){
+            System.err.println(ex);
+        }
+        RentCarPageController rentPage = Loader.getController();
+        rentPage.setCar(Selected.getVin(), Selected.getCondition(), Selected.getStyle(), Selected.getMake(), Selected.getModel(), Selected.getYear(), Selected.getColor(), Selected.getPrice());
+        
+        Parent p = Loader.getRoot();
+        Node node=(Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(p));
+        stage.show();
     }
     
     @Override
