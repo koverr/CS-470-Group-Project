@@ -76,10 +76,10 @@ public class RentCarPageController implements Initializable {
         String stringVin = VINField.getText();
         String duration = DurationForm.getText();
         int theVin = Integer.parseInt(stringVin);
-        int employeeID= -5;
+        
 
         try{
-            rentStmt.setInt(1, employeeID);
+            rentStmt.setInt(1, Integer.parseInt(empID));
             rentStmt.setString(2,theUsername);
             rentStmt.setInt(3, theVin);
             rentStmt.setString(4, duration);
