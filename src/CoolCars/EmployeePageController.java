@@ -37,6 +37,8 @@ public class EmployeePageController implements Initializable {
     Connection conn = sqlconn.connect();
     Statement stmt = sqlconn.getStatement();
     
+    String employee;
+    
     //Stores the location name, storeID
     HashMap<String, Integer> locationData = new HashMap<>();
     
@@ -52,6 +54,10 @@ public class EmployeePageController implements Initializable {
     @FXML
     TableColumn VINCol, ConditionCol, StyleCol, MakeCol, ModelCol, YearCol, ColorCol, PriceCol;
  
+    
+    public void setEmployee(String EID){
+        this.employee = EID;
+    }
        
     @FXML
     private void listByLocation(ActionEvent event) throws IOException{
@@ -84,11 +90,21 @@ public class EmployeePageController implements Initializable {
 
     @FXML
     private void handleAddCar(ActionEvent event) throws IOException{
+        FXMLLoader Loader = new FXMLLoader();
+        Loader.setLocation(getClass().getResource("AddCarPage.fxml"));
+        try{
+            Loader.load();
+        } catch (IOException ex){
+            System.err.println(ex);
+        }
+        AddCarPageController addPage = Loader.getController();
+        addPage.setEmployee(employee);
+        
+        
+        Parent p = Loader.getRoot();
         Node node=(Node) event.getSource();
-        Stage stage=(Stage) node.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("AddCarPage.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(p));
         stage.show();
     }
 
@@ -105,7 +121,8 @@ public class EmployeePageController implements Initializable {
         }
         EditCarPageController editPage = Loader.getController();
         editPage.setCar(Selected.getVin(), Selected.getCondition(), Selected.getStyle(), Selected.getMake(), Selected.getModel(), Selected.getYear(), Selected.getColor(), Selected.getPrice());
-
+        editPage.setEmployee(employee);
+        
         Parent p = Loader.getRoot();
         Node node=(Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -137,6 +154,8 @@ public class EmployeePageController implements Initializable {
         }
         RentCarPageController rentPage = Loader.getController();
         rentPage.setCar(Selected.getVin(), Selected.getCondition(), Selected.getStyle(), Selected.getMake(), Selected.getModel(), Selected.getYear(), Selected.getColor(), Selected.getPrice());
+        rentPage.setRentInfo(employee);
+        
         
         Parent p = Loader.getRoot();
         Node node=(Node) event.getSource();

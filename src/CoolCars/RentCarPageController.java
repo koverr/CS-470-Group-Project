@@ -35,27 +35,41 @@ public class RentCarPageController implements Initializable {
     Connection conn = sqlconn.connect();
     CallableStatement rentStmt = sqlconn.procedure("employee_rent_car(?,?,?,?)");
     Statement normStmt = sqlconn.getStatement();
-    
+    String empID;
+
     @FXML
     TextField CustomerIDForm, DurationForm;
-    
+
     @FXML
     Button CancelButton, ConfirmButton;
-    
+
     @FXML
     Text VINField, MakeField, ModelField, YearField;
-    
-    
+
+    public void setRentInfo(String ID){
+        this.empID = ID;
+    }
+
+
     @FXML
     private void handleCancel(ActionEvent event) throws IOException{
+        FXMLLoader Loader = new FXMLLoader();
+        Loader.setLocation(getClass().getResource("EmployeePage.fxml"));
+        try{
+            Loader.load();
+        } catch (IOException ex){
+            System.err.println(ex);
+        }
+        EmployeePageController editPage = Loader.getController();
+        editPage.setEmployee(empID);
+ 
+        Parent p = Loader.getRoot();
         Node node=(Node) event.getSource();
-        Stage stage=(Stage) node.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("EmployeePage.fxml"));/* Exception */
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.setScene(new Scene(p));
         stage.show();
     }
-    
+
     @FXML
     private void handleConfirm(ActionEvent event) throws IOException{
         String theUsername = CustomerIDForm.getText();
@@ -103,6 +117,5 @@ public class RentCarPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-    }    
-    
+    }
 }

@@ -7,14 +7,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CoolCars.RentCarPageController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CoolCars.RentCarPageController">
    <children>
       <TextField fx:id="CustomerIDForm" layoutX="226.0" layoutY="150.0" />
-      <TextField fx:id="DurationForm" layoutX="226.0" layoutY="193.0" />
-      <Button fx:id="CancelButton" layoutX="200.0" layoutY="293.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
-      <Button fx:id="ConfirmButton" layoutX="349.0" layoutY="293.0" mnemonicParsing="false" onAction="#handleConfirm" text="Cofirm" />
-      <Label layoutX="226.0" layoutY="133.0" text="Customer ID" />
-      <Label layoutX="226.0" layoutY="175.0" text="Duration (Days)" />
+      <TextField fx:id="DurationForm" layoutX="226.0" layoutY="197.0" />
+      <Button fx:id="CancelButton" layoutX="200.0" layoutY="293.0" mnemonicParsing="false" onAction="#handleCancel" text="Exit" />
+      <Button fx:id="ConfirmButton" layoutX="349.0" layoutY="293.0" mnemonicParsing="false" onAction="#handleConfirm" text="Confirm" />
+      <Label layoutX="226.0" layoutY="132.0" text="Customer ID" />
+      <Label layoutX="226.0" layoutY="178.0" text="Duration (Days)" />
       <Label layoutX="187.0" layoutY="90.0" text="Make:" />
       <Label layoutX="299.0" layoutY="66.0" text="Model:" />
       <Label layoutX="303.0" layoutY="90.0" text="Year:" />
@@ -24,9 +24,9 @@
          </font>
       </Text>
       <Label layoutX="188.0" layoutY="66.0" text="VIN:" />
-      <Text fx:id="VINField" layoutX="223.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VINField" />
-      <Text fx:id="MakeField" layoutX="227.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MakeField" />
-      <Text fx:id="ModelField" layoutX="339.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ModelField" />
-      <Text fx:id="YearField" layoutX="341.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="YearField" />
+      <Text fx:id="VINField" layoutX="235.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VINField" />
+      <Text fx:id="MakeField" layoutX="238.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MakeField" />
+      <Text fx:id="ModelField" layoutX="359.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ModelField" />
+      <Text fx:id="YearField" layoutX="353.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="YearField" />
    </children>
 </AnchorPane>
