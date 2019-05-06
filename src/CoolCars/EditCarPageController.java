@@ -82,6 +82,13 @@ public class EditCarPageController implements Initializable {
         {
             System.err.println(e);
         }
+        
+        Node node=(Node) event.getSource();
+        Stage stage=(Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("EmployeePage.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     
     
