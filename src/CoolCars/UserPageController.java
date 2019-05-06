@@ -64,8 +64,12 @@ public class UserPageController implements Initializable {
         try {
             stmt.setInt(1, stores.get(location));
             stmt.setInt(2, Integer.parseInt(year));
-            stmt.setInt(3, Integer.parseInt(price));
-
+            try {
+                stmt.setInt(3, Integer.parseInt(price));
+            } catch (Exception e){
+                System.err.println(e);
+                stmt.setInt(3, 0);
+            }
             stmt.execute();
 
             search.clear();
